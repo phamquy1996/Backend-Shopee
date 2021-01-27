@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: quy
+Build-Jdk: 15.0.1
+Implementation-Title: springbootexample Maven Webapp
+Implementation-Version: 1.0.2-SNAPSHOT
+Implementation-Vendor-Id: com.letstartcoding
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/springbootexam
+ ple/
+Created-By: Maven Integration for Eclipse
+
