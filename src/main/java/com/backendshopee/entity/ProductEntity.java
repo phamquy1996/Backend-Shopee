@@ -2,6 +2,7 @@ package com.backendshopee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +11,7 @@ public class ProductEntity extends ParentEntity{
 	@Column(name = "name", nullable = true, unique = true)
 	private String name;
 	
+	@Lob
 	@Column(name  = "description", nullable = true, unique = true)
 	private String description;
 	
