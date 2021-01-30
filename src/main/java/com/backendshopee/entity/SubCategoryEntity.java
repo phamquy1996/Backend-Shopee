@@ -2,13 +2,14 @@ package com.backendshopee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "SubCategory")
@@ -19,10 +20,11 @@ public class SubCategoryEntity extends ParentEntity{
 	@Column(name = "image")
 	private String image = "0";
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JsonBackReference
+	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-	private CategoryEntity categoryEntity;
+	private CategoryEntity categoryentity;
 
 	public String getName() {
 		return name;
@@ -40,12 +42,12 @@ public class SubCategoryEntity extends ParentEntity{
 		this.image = image;
 	}
 
-	public CategoryEntity getCategoryEntity() {
-		return categoryEntity;
+	public CategoryEntity getCategoryentity() {
+		return categoryentity;
 	}
 
-	public void setCategoryEntity(CategoryEntity categoryEntity) {
-		this.categoryEntity = categoryEntity;
+	public void setCategoryentity(CategoryEntity categoryentity) {
+		this.categoryentity = categoryentity;
 	}
 
 

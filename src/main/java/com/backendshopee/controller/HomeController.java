@@ -5,28 +5,34 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.service.ICategoryService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 
 public class HomeController {
 	@Autowired
 	private ICategoryService icategoryservice;
+	@Autowired
+	private BCryptPasswordEncoder anhquy;
 	@PostMapping(value = "/new")
-	public CategoryEntity getAllEmployees(@Valid @RequestBody CategoryEntity model ) {
+	public String getAllEmployees(@Valid @RequestBody CategoryEntity model ) {
 		icategoryservice.save(model);
-		return model;
+		String a = anhquy.encode(model.getName());
+		return a;
 	}
 	
 	@GetMapping(value = "/all")
-	public @ResponseBody List<CategoryEntity> getAllCategory() {
+	public List<CategoryEntity> getAllCategory() {
 		List<CategoryEntity> cate = icategoryservice.findAll();
 		return cate;
 	}

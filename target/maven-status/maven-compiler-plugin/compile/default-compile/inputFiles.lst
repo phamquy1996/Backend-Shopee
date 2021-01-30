@@ -1,6 +1,7 @@
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\SliderEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CartDetailEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\FavoriteProductEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\config\MessageBean.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\impl\CategoryService.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ParentEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\HomeController.java
@@ -9,6 +10,8 @@ C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\FollowUserEn
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ImagesRatingEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\repository\CategoryRepository.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\VideoRatingEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\SocketController.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\util\Config.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CartEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\SubCategoryEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\Application.java
@@ -16,6 +19,7 @@ C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ChildCategor
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\RoomChatEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\UserEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\MulImageProductEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\config\WebSocketConfig.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\MessageEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\NoficationEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ReplyRatingEntity.java

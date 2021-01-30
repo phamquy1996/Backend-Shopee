@@ -1,16 +1,17 @@
 package com.backendshopee.entity;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Category")
@@ -40,7 +41,14 @@ public class CategoryEntity extends ParentEntity {
 		this.image = image;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryEntity")
-	  private Set<SubCategoryEntity> listEmployee = new HashSet<>();
+	@JsonManagedReference
+	@OneToMany(mappedBy = "categoryentity")
+	private List<SubCategoryEntity> SubCategories = new ArrayList<>();
+
+
+	public void setSubCategories(List<SubCategoryEntity> subCategories) {
+		SubCategories = subCategories;
+	}
+
 
 }
