@@ -2,6 +2,7 @@ C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\SliderEntity
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CartDetailEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\FavoriteProductEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\config\MessageBean.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\WebSocketEventListener.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\impl\CategoryService.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ParentEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\HomeController.java
