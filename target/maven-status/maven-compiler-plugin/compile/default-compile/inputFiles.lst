@@ -1,6 +1,10 @@
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\RoleEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\impl\UserService.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\SliderEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CartDetailEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\FavoriteProductEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\IRoleService.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\RoleController.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\config\MessageBean.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\WebSocketEventListener.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\impl\CategoryService.java
@@ -11,8 +15,11 @@ C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\FollowUserEn
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ImagesRatingEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\repository\CategoryRepository.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\VideoRatingEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\repository\UserRepository.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\SocketController.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\repository\RoleRepository.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\util\Config.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\impl\RoleService.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CartEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\SubCategoryEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\Application.java
@@ -28,4 +35,6 @@ C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\CategoryEnti
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\RatingEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\ProductEntity.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\entity\BillEntity.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\IUserService.java
+C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\controller\UserController.java
 C:\JAVASPRING\Backend-Shopee\src\main\java\com\backendshopee\service\ICategoryService.java

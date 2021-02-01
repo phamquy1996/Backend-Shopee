@@ -1,16 +1,25 @@
 package com.backendshopee.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "User")
 public class UserEntity extends ParentEntity{
 	@Column(name = "name")
+	@Size(min=2, max=30)
 	private String name;
 	
-	@Column(name = "email", nullable = true, unique = true)
+	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "password")
@@ -20,8 +29,15 @@ public class UserEntity extends ParentEntity{
 	private String avatar;
 	
 	@Column(name = "token")
+	@Size(min=2, max=30)
 	private String token;
-
+	
+	@ManyToMany
+	@JoinTable(name = "user_role", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<RoleEntity> roles =  new ArrayList<>();
+	
 	public String getName() {
 		return name;
 	}
@@ -61,4 +77,13 @@ public class UserEntity extends ParentEntity{
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	public List<RoleEntity> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
+	}
+
 }
