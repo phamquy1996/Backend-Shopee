@@ -30,5 +30,11 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
+
+	@Override
+	public void editUser(long id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
