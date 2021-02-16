@@ -1,5 +1,6 @@
 package com.backendshopee.controller;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin("*")
 public class FileUploadController {
+
 	public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 //	  @RequestMapping("/upload")
 //	  public String UploadPage(Model model) {
@@ -26,7 +28,7 @@ public class FileUploadController {
 	  @RequestMapping(value=("/upload"),method=RequestMethod.POST)
 	  public String upload(Model model,@RequestParam("files") MultipartFile[] files) {
 		  StringBuilder fileNames = new StringBuilder();
-		 
+		  System.out.println( files);
 		  for (MultipartFile file : files) {
 			  System.out.println( file.getOriginalFilename());
 			  Path fileNameAndPath = Paths.get(uploadDirectory, "anhquy" + file.getOriginalFilename());

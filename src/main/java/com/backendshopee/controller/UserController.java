@@ -17,7 +17,7 @@ import com.backendshopee.entity.UserEntity;
 import com.backendshopee.service.IRoleService;
 import com.backendshopee.service.IUserService;
 @RestController 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class UserController {
 	
 	@Autowired
@@ -31,6 +31,15 @@ public class UserController {
 	
 	@PostMapping(value = "addUser")
 	public UserEntity addUser(@Valid @RequestBody UserEntity model) {
+		String code = bCryptPasswordEncoder.encode(model.getPassword());
+		model.setPassword(code);
+		model.setRoles(iRoleService.findByRole("ADMIN"));
+		iuserservice.addUser(model);
+		return model;
+	}
+	
+	@PostMapping(value = "login")
+	public UserEntity login(@Valid @RequestBody UserEntity model) {
 		String code = bCryptPasswordEncoder.encode(model.getPassword());
 		model.setPassword(code);
 		model.setRoles(iRoleService.findByRole("ADMIN"));
