@@ -29,4 +29,11 @@ public class CategoryService implements ICategoryService{
 	public void delete(Long id) {
 		categoryrepository.deleteById(id);
 	}
+
+	@Override
+	public CategoryEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return categoryrepository.findById(id).get();
+	}
+
 }

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "Category")
 public class CategoryEntity extends ParentEntity {
 	
+	
 	@Column(name = "name")
 	@NotNull
     @Size(min = 4, max = 15, message = "Age should not be less than 18")

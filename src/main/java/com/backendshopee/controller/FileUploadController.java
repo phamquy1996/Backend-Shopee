@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin("*")
 public class FileUploadController {
 
-	public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+	public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/upload/static/images/gallery";
 //	  @RequestMapping("/upload")
 //	  public String UploadPage(Model model) {
 //		  return "index";
@@ -28,18 +28,19 @@ public class FileUploadController {
 	  @RequestMapping(value=("/upload"),method=RequestMethod.POST)
 	  public String upload(Model model,@RequestParam("files") MultipartFile[] files) {
 		  StringBuilder fileNames = new StringBuilder();
-		  System.out.println( files);
+		 
 		  for (MultipartFile file : files) {
 			  System.out.println( file.getOriginalFilename());
-			  Path fileNameAndPath = Paths.get(uploadDirectory, "anhquy" + file.getOriginalFilename());
+			  Path fileNameAndPath = Paths.get(uploadDirectory,file.getOriginalFilename());
 			  fileNames.append(file.getOriginalFilename()+" ");
 			  try {
 				Files.write(fileNameAndPath, file.getBytes());
+				 System.out.println( fileNameAndPath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		  }
-		  model.addAttribute("msg", "Successfully uploaded files "+fileNames.toString());
-		  return "uploadstatusview";
+		  model.addAttribute("msg", "Successfully uploaded files "+ fileNames.toString());
+		  return fileNames.toString();
 	  }
 }
