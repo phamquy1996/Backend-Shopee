@@ -2,6 +2,7 @@ package com.backendshopee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,10 +21,8 @@ public class SubCategoryEntity extends ParentEntity{
 	@Column(name = "image")
 	private String image = "0";
 	
-	@JsonBackReference
 	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
 	private CategoryEntity categoryentity;
 
 	public String getName() {

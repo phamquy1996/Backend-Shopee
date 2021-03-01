@@ -8,7 +8,9 @@ import com.backendshopee.entity.SubCategoryEntity;
 
 public class SubcategoryOutput {
 	private List<SubCategoryEntity> listSubcate = new ArrayList<>();
-	private List<CategoryEntity> listCate = new ArrayList<>();
+	
+	private int page;
+	private int totalPage;
 	
 	public List<SubCategoryEntity> getListSubcate() {
 		return listSubcate;
@@ -16,10 +18,16 @@ public class SubcategoryOutput {
 	public void setListSubcate(List<SubCategoryEntity> listSubcate) {
 		this.listSubcate = listSubcate;
 	}
-	public List<CategoryEntity> getListCate() {
-		return listCate;
+	public int getPage() {
+		return page;
 	}
-	public void setListCate(List<CategoryEntity> listCate) {
-		this.listCate = listCate;
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
 }
