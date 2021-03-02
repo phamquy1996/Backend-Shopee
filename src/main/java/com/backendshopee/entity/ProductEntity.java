@@ -1,8 +1,16 @@
 package com.backendshopee.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +26,12 @@ public class ProductEntity extends ParentEntity{
 	@Column(name = "price")
 	private Float price;
 	
+	@Column(name = "Subclassfly")
+	private String Subclassfly;
+	
+	@Column(name = "classfly")
+	private String classfly;
+	
 	@Column(name = "discount")
 	private Float discount;
 	
@@ -30,9 +44,6 @@ public class ProductEntity extends ParentEntity{
 	@Column(name = "content_discount", length = 512)
 	private String content_discount;
 	
-	@Column(name = "subCate_id")
-	private Number subCate_id;
-	
 	@Column(name = "user_id")
 	private Number user_id = 0;
 	
@@ -41,7 +52,31 @@ public class ProductEntity extends ParentEntity{
 	
 	@Column(name = "image")
 	private String image = "0";
-
+	
+	@ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+	private CategoryEntity categoryentity;
+	
+	@ManyToOne
+    @JoinColumn(name = "subcategory_id", nullable = false)
+	private SubCategoryEntity subCategoryEntity;
+	
+	@ManyToOne
+    @JoinColumn(name = "childCategory_id", nullable = false)
+	private ChildCategoryEntity childCategoryEntity;
+	
+	@OneToMany(mappedBy = "productEntity")
+	private List<ClassifyEntity> classifyEntity = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "productEntity")
+	private List<SubClassifyEntity> subClassifyEntity = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "product_shipping", 
+				joinColumns = @JoinColumn(name = "product_id"), 
+				inverseJoinColumns = @JoinColumn(name = "shipping_id"))
+	private List<ShippingEntity> shippings =  new ArrayList<>();
+	
 	public String getName() {
 		return name;
 	}
@@ -98,14 +133,6 @@ public class ProductEntity extends ParentEntity{
 		this.content_discount = content_discount;
 	}
 
-	public Number getSubCate_id() {
-		return subCate_id;
-	}
-
-	public void setSubCate_id(Number subCate_id) {
-		this.subCate_id = subCate_id;
-	}
-
 	public Number getUser_id() {
 		return user_id;
 	}
@@ -128,5 +155,61 @@ public class ProductEntity extends ParentEntity{
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public CategoryEntity getCategoryentity() {
+		return categoryentity;
+	}
+
+	public void setCategoryentity(CategoryEntity categoryentity) {
+		this.categoryentity = categoryentity;
+	}
+
+	public SubCategoryEntity getSubCategoryEntity() {
+		return subCategoryEntity;
+	}
+
+	public void setSubCategoryEntity(SubCategoryEntity subCategoryEntity) {
+		this.subCategoryEntity = subCategoryEntity;
+	}
+
+	public ChildCategoryEntity getChildCategoryEntity() {
+		return childCategoryEntity;
+	}
+
+	public void setChildCategoryEntity(ChildCategoryEntity childCategoryEntity) {
+		this.childCategoryEntity = childCategoryEntity;
+	}
+
+	public List<ClassifyEntity> getClassifyEntity() {
+		return classifyEntity;
+	}
+
+	public void setClassifyEntity(List<ClassifyEntity> classifyEntity) {
+		this.classifyEntity = classifyEntity;
+	}
+
+	public List<SubClassifyEntity> getSubClassifyEntity() {
+		return subClassifyEntity;
+	}
+
+	public void setSubClassifyEntity(List<SubClassifyEntity> subClassifyEntity) {
+		this.subClassifyEntity = subClassifyEntity;
+	}
+
+	public String getSubclassfly() {
+		return Subclassfly;
+	}
+
+	public void setSubclassfly(String subclassfly) {
+		Subclassfly = subclassfly;
+	}
+
+	public String getClassfly() {
+		return classfly;
+	}
+
+	public void setClassfly(String classfly) {
+		this.classfly = classfly;
 	}
 }

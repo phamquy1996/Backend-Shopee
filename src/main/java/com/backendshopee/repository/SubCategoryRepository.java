@@ -13,7 +13,7 @@ import com.backendshopee.entity.SubCategoryEntity;
 
 @Repository
 public interface SubCategoryRepository extends JpaRepository<SubCategoryEntity, Long>{
-	Optional<SubCategoryEntity> findById(Long id);
+//	 Optional<SubCategoryEntity> findById(Long id);
 	
 	 @Query("select s from SubCategoryEntity s where s.name = ?1")
 	 SubCategoryEntity findByEmailAddress(String emailAddress);

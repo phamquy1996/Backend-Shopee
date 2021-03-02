@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 
 import com.backendshopee.dto.SubcategoryDTO;
+import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.entity.SubCategoryEntity;
 
 public interface ISubCategoryService {

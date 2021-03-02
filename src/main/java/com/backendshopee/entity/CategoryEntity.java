@@ -44,14 +44,28 @@ public class CategoryEntity extends ParentEntity {
 		this.image = image;
 	}
 	
-	
 	@OneToMany(mappedBy = "categoryentity")
 	private List<SubCategoryEntity> SubCategories = new ArrayList<>();
-
+	
+	@OneToMany(mappedBy = "categoryentity")
+	private List<ChildCategoryEntity> ChildCategoryEntity = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "categoryentity")
+	private List<ProductEntity> ProductEntity = new ArrayList<>();
 
 	public void setSubCategories(List<SubCategoryEntity> subCategories) {
 		SubCategories = subCategories;
 	}
+
+	public void setChildCategoryEntity(List<ChildCategoryEntity> childCategoryEntity) {
+		ChildCategoryEntity = childCategoryEntity;
+	}
+
+
+	public void setProductEntity(List<ProductEntity> productEntity) {
+		ProductEntity = productEntity;
+	}
+
 
 
 }

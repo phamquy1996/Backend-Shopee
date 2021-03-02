@@ -46,8 +46,7 @@ public class SubCategoryService implements ISubCategoryService{
 //	}
 	@Override
 	public SubCategoryEntity findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return subCategoryRepository.findById(id).get();
 	}
 	@Override
 	public void addSubCategory(SubcategoryDTO subcategoryDTO) {

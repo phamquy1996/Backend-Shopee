@@ -38,6 +38,12 @@ public class UserEntity extends ParentEntity{
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<RoleEntity> roles =  new ArrayList<>();
 	
+	@ManyToMany
+	@JoinTable(name = "user_product", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "product_id"))
+	private List<ProductEntity> products =  new ArrayList<>();
+	
 	public String getName() {
 		return name;
 	}
@@ -84,6 +90,14 @@ public class UserEntity extends ParentEntity{
 
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
+	}
+
+	public List<ProductEntity> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductEntity> products) {
+		this.products = products;
 	}
 
 }

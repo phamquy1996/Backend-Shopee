@@ -1,12 +1,14 @@
 package com.backendshopee.dto;
 
-public class SubcategoryDTO {
+public class ChildCategoryDTO{
 
 	private String name;
 	
 	private String image = "0";
 	
 	private Long category_id;
+	
+	private Long subcategory_id;
 	
 	private Long status;
 	
@@ -40,6 +42,14 @@ public class SubcategoryDTO {
 
 	public void setStatus(Long status) {
 		this.status = status;
+	}
+
+	public Long getSubcategory_id() {
+		return subcategory_id;
+	}
+
+	public void setSubcategory_id(Long subcategory_id) {
+		this.subcategory_id = subcategory_id;
 	}
 	
 }

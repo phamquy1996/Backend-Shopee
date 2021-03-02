@@ -1,7 +1,14 @@
 package com.backendshopee.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,13 +20,22 @@ public class ChildCategoryEntity extends ParentEntity {
 	@Column(name = "image")
 	private String image = "0";
 	
-	@Column(name = "subcategory_id")
-	private Number subcategory_id;
-
+	
+	@ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+	private CategoryEntity categoryentity;
+	
+	@ManyToOne
+    @JoinColumn(name = "subcategory_id", nullable = false)
+	private SubCategoryEntity subCategoryEntity;
+	
+	@OneToMany(mappedBy = "childCategoryEntity")
+	private List<ProductEntity> ProductEntity = new ArrayList<>();
+	
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -32,11 +48,28 @@ public class ChildCategoryEntity extends ParentEntity {
 		this.image = image;
 	}
 
-	public Number getSubcategory_id() {
-		return subcategory_id;
+	public CategoryEntity getCategoryentity() {
+		return categoryentity;
 	}
 
-	public void setSubcategory_id(Number subcategory_id) {
-		this.subcategory_id = subcategory_id;
+	public void setCategoryentity(CategoryEntity categoryentity) {
+		this.categoryentity = categoryentity;
 	}
+
+	public SubCategoryEntity getSubCategoryEntity() {
+		return subCategoryEntity;
+	}
+
+	public void setSubCategoryEntity(SubCategoryEntity subCategoryEntity) {
+		this.subCategoryEntity = subCategoryEntity;
+	}
+
+	public List<ProductEntity> getProductEntity() {
+		return ProductEntity;
+	}
+
+	public void setProductEntity(List<ProductEntity> productEntity) {
+		ProductEntity = productEntity;
+	}
+
 }

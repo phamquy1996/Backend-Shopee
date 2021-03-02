@@ -64,9 +64,6 @@ public class SubcategoryController {
 	
 	@PostMapping("/addSubCategory")
 	public void addCategory(@Valid @RequestBody SubcategoryDTO model) {
-		System.out.print(model.getName());
-//		model.setRoles(iRoleService.findByRole("ADMIN"));
-//		model.setCategoryentity(icategoryService.findById(model.getId()));
 		iSubCategoryService.addSubCategory(model);
 	}
 }
