@@ -3,7 +3,6 @@ package com.backendshopee.api.admin.output;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.entity.SubCategoryEntity;
 
 public class SubcategoryOutput {

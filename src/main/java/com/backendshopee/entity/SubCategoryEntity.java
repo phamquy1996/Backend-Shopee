@@ -10,14 +10,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "SubCategory")
+
 public class SubCategoryEntity extends ParentEntity{
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "image")
 	private String image = "0";
+	
 	
 	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -44,7 +48,8 @@ public class SubCategoryEntity extends ParentEntity{
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	
+	@JsonBackReference
 	public CategoryEntity getCategoryentity() {
 		return categoryentity;
 	}
