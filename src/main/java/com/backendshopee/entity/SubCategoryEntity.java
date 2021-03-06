@@ -3,6 +3,7 @@ package com.backendshopee.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "SubCategory")
@@ -23,15 +24,15 @@ public class SubCategoryEntity extends ParentEntity{
 	private String image = "0";
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", nullable = false)
 	private CategoryEntity categoryentity;
 	
-	@OneToMany(mappedBy = "subCategoryEntity")
-	private List<ProductEntity> ProductEntity = new ArrayList<>();
+	@OneToMany(mappedBy = "subCategoryEntity")	
+	private List<ProductEntity> Products = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "subCategoryEntity")
-	private List<ChildCategoryEntity> childCategoryEntity = new ArrayList<>();
+	private List<ChildCategoryEntity> childCategories= new ArrayList<>();
 	
 	public String getName() {
 		return name;
@@ -49,25 +50,40 @@ public class SubCategoryEntity extends ParentEntity{
 		this.image = image;
 	}
 	
-	@JsonBackReference
+	public Long getAuthor_id(){
+        return categoryentity.getId();
+    }
+
+    //getter Method to get the author's full name
+    public String getAuthorName(){
+        return categoryentity.getName();
+    }
+	
+    @JsonIgnore
 	public CategoryEntity getCategoryentity() {
 		return categoryentity;
 	}
-
+    
+    @JsonIgnore
 	public void setCategoryentity(CategoryEntity categoryentity) {
 		this.categoryentity = categoryentity;
 	}
 
-	public void setChildCategoryEntity(List<ChildCategoryEntity> childCategoryEntity) {
-		this.childCategoryEntity = childCategoryEntity;
+	public List<ChildCategoryEntity> getChildCategories() {
+		return childCategories;
 	}
 
-	public List<ProductEntity> getProductEntity() {
-		return ProductEntity;
+	public void setChildCategories(List<ChildCategoryEntity> childCategories) {
+		this.childCategories = childCategories;
 	}
 
-	public void setProductEntity(List<ProductEntity> productEntity) {
-		ProductEntity = productEntity;
-	}
+//	public List<ProductEntity> getProductEntity() {
+//		return ProductEntity;
+//	}
+//	
+//	public void setProductEntity(List<ProductEntity> productEntity) {
+//		ProductEntity = productEntity;
+//	}
+
 	
 }

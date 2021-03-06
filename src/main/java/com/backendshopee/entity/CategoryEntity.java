@@ -2,19 +2,21 @@ package com.backendshopee.entity;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "Category")
 public class CategoryEntity extends ParentEntity {
@@ -44,40 +46,44 @@ public class CategoryEntity extends ParentEntity {
 		this.image = image;
 	}
 	
-	@OneToMany(mappedBy = "categoryentity")
+	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<SubCategoryEntity> SubCategories;
 	
-	@OneToMany(mappedBy = "categoryentity")
-	private List<ChildCategoryEntity> ChildCategoryEntity = new ArrayList<>();
+	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
+	private List<ChildCategoryEntity> ChildCategories = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "categoryentity")
-	private List<ProductEntity> ProductEntity = new ArrayList<>();
+	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
+	private List<ProductEntity> Products = new ArrayList<>();
 	
-	@JsonManagedReference
+    
 	public List<SubCategoryEntity> getSubCategories() {
-		return SubCategories;
+		return this.SubCategories == null ? null : new ArrayList<>(this.SubCategories); 
 	}
 	
 	public void setSubCategories(List<SubCategoryEntity> subCategories) {
-		SubCategories = subCategories;
+		if (subCategories == null) {
+			this.SubCategories = null;
+		} else {
+			this.SubCategories = Collections.unmodifiableList(subCategories);
+		}
 	}
 	
-	@JsonManagedReference
-	public List<ChildCategoryEntity> getChildCategoryEntity() {
-		return ChildCategoryEntity;
-	}
-
-	public void setChildCategoryEntity(List<ChildCategoryEntity> childCategoryEntity) {
-		ChildCategoryEntity = childCategoryEntity;
-	}
-	@JsonManagedReference
-	public List<ProductEntity> getProductEntity() {
-		return ProductEntity;
-	}
-
-	public void setProductEntity(List<ProductEntity> productEntity) {
-		ProductEntity = productEntity;
-	}
+//	@JsonManagedReference
+//	public List<ChildCategoryEntity> getChildCategoryEntity() {
+//		return ChildCategoryEntity;
+//	}
+//
+//	public void setChildCategoryEntity(List<ChildCategoryEntity> childCategoryEntity) {
+//		ChildCategoryEntity = childCategoryEntity;
+//	}
+//	@JsonManagedReference
+//	public List<ProductEntity> getProductEntity() {
+//		return ProductEntity;
+//	}
+//
+//	public void setProductEntity(List<ProductEntity> productEntity) {
+//		ProductEntity = productEntity;
+//	}
 
 
 
