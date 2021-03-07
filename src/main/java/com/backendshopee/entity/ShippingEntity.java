@@ -27,4 +27,28 @@ public class ShippingEntity extends ParentEntity {
 		this.name = name;
 	}
 
+	public Number getMaxgram() {
+		return maxgram;
+	}
+
+	public void setMaxgram(Number maxgram) {
+		this.maxgram = maxgram;
+	}
+
+	public Number getMingram() {
+		return mingram;
+	}
+
+	public void setMingram(Number mingram) {
+		this.mingram = mingram;
+	}
+
+	public Number getMoney_shipping() {
+		return money_shipping;
+	}
+
+	public void setMoney_shipping(Number money_shipping) {
+		this.money_shipping = money_shipping;
+	}
+
 }

@@ -39,6 +39,9 @@ public class ProductEntity extends ParentEntity{
 	@Column(name = "discount")
 	private Float discount;
 	
+	@Column(name = "gram")
+	private Number gram;
+	
 	@Column(name = "view")
 	private Number view = 0;
 	
@@ -215,5 +218,21 @@ public class ProductEntity extends ParentEntity{
 
 	public void setClassfly(String classfly) {
 		this.classfly = classfly;
+	}
+
+	public Number getGram() {
+		return gram;
+	}
+
+	public void setGram(Number gram) {
+		this.gram = gram;
+	}
+
+	public List<ShippingEntity> getShippings() {
+		return shippings;
+	}
+
+	public void setShippings(List<ShippingEntity> shippings) {
+		this.shippings = shippings;
 	}
 }
