@@ -3,6 +3,8 @@ package com.backendshopee.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,15 +37,15 @@ public class UserController {
 	
 //	@Autowired
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
-//	
-//	@PostMapping(value = "addUser")
-//	public UserEntity addUser(@Valid @RequestBody UserEntity model) {
+	
+	@PostMapping(value = "addUser")
+	public UserEntity addUser(@Valid @RequestBody UserEntity model) {
 //		String code = bCryptPasswordEncoder.encode(model.getPassword());
 //		model.setPassword(code);
 //		model.setRoles(iRoleService.findByRole("ADMIN"));
-//		iuserservice.addUser(model);
-//		return model;
-//	}
+		iuserservice.addUser(model);
+		return model;
+	}
 	
 //	@PostMapping(value = "login")
 //	public UserEntity login(@Valid @RequestBody UserEntity model) {
