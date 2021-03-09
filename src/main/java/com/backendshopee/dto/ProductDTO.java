@@ -21,6 +21,12 @@ public class ProductDTO {
 	
 	private Float discount;
 	
+	private Long category_id;
+	
+	private Long subcategory_id;
+	
+	private Long childcategory_id;
+	
 	private Number gram;
 	
 	private Number view = 0;
@@ -162,4 +168,29 @@ public class ProductDTO {
 	public void setShippings(List<ShippingDTO> shippings) {
 		this.shippings = shippings;
 	}
+
+	public Long getCategory_id() {
+		return category_id;
+	}
+
+	public Long getSubcategory_id() {
+		return subcategory_id;
+	}
+
+	public void setSubcategory_id(Long subcategory_id) {
+		this.subcategory_id = subcategory_id;
+	}
+
+	public Long getChildcategory_id() {
+		return childcategory_id;
+	}
+
+	public void setChildcategory_id(Long childcategory_id) {
+		this.childcategory_id = childcategory_id;
+	}
+
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
+	}
+
 }

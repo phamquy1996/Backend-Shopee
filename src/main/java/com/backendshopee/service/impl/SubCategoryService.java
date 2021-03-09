@@ -58,6 +58,7 @@ public class SubCategoryService implements ISubCategoryService{
 		subCategoryEntity.setStatus(subcategoryDTO.getStatus());
 //		subCategoryEntity.setImage(subcategoryDTO.getImage());
 		subCategoryRepository.save(subCategoryEntity);
+		
 	}
 	@Override
 	public List<SubCategoryEntity> getAllEmployees(Integer pageNo, Integer pageSize) {

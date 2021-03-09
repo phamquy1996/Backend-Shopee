@@ -47,4 +47,10 @@ public class ChildCategoryService implements IChildCategoryService{
 		childCategoryRepository.save(childCategoryEntity);
 	}
 
+	@Override
+	public ChildCategoryEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return childCategoryRepository.findById(id).get();
+	}
+
 }
