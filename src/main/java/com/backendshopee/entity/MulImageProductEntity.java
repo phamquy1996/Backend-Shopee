@@ -2,6 +2,8 @@ package com.backendshopee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,9 +12,11 @@ public class MulImageProductEntity extends ParentEntity{
 	@Column(name = "image")
 	private String image;
 	
-	@Column(name = "product_id")
-	private Number product_id;
-
+	
+	@ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+	private ProductEntity productEntity;
+	
 	public String getImage() {
 		return image;
 	}
@@ -21,11 +25,12 @@ public class MulImageProductEntity extends ParentEntity{
 		this.image = image;
 	}
 
-	public Number getProduct_id() {
-		return product_id;
+	public ProductEntity getProductEntity() {
+		return productEntity;
 	}
 
-	public void setProduct_id(Number product_id) {
-		this.product_id = product_id;
+	public void setProductEntity(ProductEntity productEntity) {
+		this.productEntity = productEntity;
 	}
+
 }

@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -76,7 +77,10 @@ public class ProductEntity extends ParentEntity{
 	private List<ClassifyEntity> classifyEntity = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "productEntity")
-	private List<SubClassifyEntity> subClassifyEntity = new ArrayList<>();
+	private List<SubClassifyEntity> subClassifies = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "productEntity")
+	private List<MulImageProductEntity> MulImageProducts = new ArrayList<>();
 	
 	@ManyToMany
 	@JoinTable(name = "product_shipping", 
@@ -163,27 +167,33 @@ public class ProductEntity extends ParentEntity{
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	
+	@JsonIgnore
 	public CategoryEntity getCategoryentity() {
 		return categoryentity;
 	}
-
+	
+	@JsonIgnore
 	public void setCategoryentity(CategoryEntity categoryentity) {
 		this.categoryentity = categoryentity;
 	}
-
+	
+	@JsonIgnore
 	public SubCategoryEntity getSubCategoryEntity() {
 		return subCategoryEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setSubCategoryEntity(SubCategoryEntity subCategoryEntity) {
 		this.subCategoryEntity = subCategoryEntity;
 	}
-
+	
+	@JsonIgnore
 	public ChildCategoryEntity getChildCategoryEntity() {
 		return childCategoryEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setChildCategoryEntity(ChildCategoryEntity childCategoryEntity) {
 		this.childCategoryEntity = childCategoryEntity;
 	}
@@ -194,14 +204,6 @@ public class ProductEntity extends ParentEntity{
 
 	public void setClassifyEntity(List<ClassifyEntity> classifyEntity) {
 		this.classifyEntity = classifyEntity;
-	}
-
-	public List<SubClassifyEntity> getSubClassifyEntity() {
-		return subClassifyEntity;
-	}
-
-	public void setSubClassifyEntity(List<SubClassifyEntity> subClassifyEntity) {
-		this.subClassifyEntity = subClassifyEntity;
 	}
 
 	public String getSubclassfly() {
@@ -235,4 +237,21 @@ public class ProductEntity extends ParentEntity{
 	public void setShippings(List<ShippingEntity> shippings) {
 		this.shippings = shippings;
 	}
+
+	public List<SubClassifyEntity> getSubClassifies() {
+		return subClassifies;
+	}
+
+	public void setSubClassifies(List<SubClassifyEntity> subClassifies) {
+		this.subClassifies = subClassifies;
+	}
+
+	public List<MulImageProductEntity> getMulImageProducts() {
+		return MulImageProducts;
+	}
+
+	public void setMulImageProducts(List<MulImageProductEntity> mulImageProducts) {
+		MulImageProducts = mulImageProducts;
+	}
+
 }

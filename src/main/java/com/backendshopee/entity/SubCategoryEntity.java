@@ -68,11 +68,11 @@ public class SubCategoryEntity extends ParentEntity{
 	public void setCategoryentity(CategoryEntity categoryentity) {
 		this.categoryentity = categoryentity;
 	}
-
+    @JsonIgnore
 	public List<ChildCategoryEntity> getChildCategories() {
 		return childCategories;
 	}
-
+	@JsonIgnore
 	public void setChildCategories(List<ChildCategoryEntity> childCategories) {
 		this.childCategories = childCategories;
 	}

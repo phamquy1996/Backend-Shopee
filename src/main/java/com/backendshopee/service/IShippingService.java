@@ -8,4 +8,5 @@ public interface IShippingService {
 
 	public void addShipping(ShippingEntity shippingentity);
 	public List<ShippingEntity> allShipping();
+	public ShippingEntity findById(Long id);
 }

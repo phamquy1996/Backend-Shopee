@@ -7,18 +7,11 @@ import com.backendshopee.entity.ShippingEntity;
 
 public class ShippingDTO {
 	
-	List<ShippingEntity> shippings = new ArrayList<>();
-	
+	private Long id;
 	private String name;
 	private Number maxgram;
 	private Number mingram;
 	private Number money_shipping;
-	public List<ShippingEntity> getShippings() {
-		return shippings;
-	}
-	public void setShippings(List<ShippingEntity> shippings) {
-		this.shippings = shippings;
-	}
 	public String getName() {
 		return name;
 	}
@@ -42,5 +35,11 @@ public class ShippingDTO {
 	}
 	public void setMoney_shipping(Number money_shipping) {
 		this.money_shipping = money_shipping;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "SubClassify")
 public class SubClassifyEntity extends ParentEntity {
@@ -38,19 +40,23 @@ public class SubClassifyEntity extends ParentEntity {
 	public void setQty(Number qty) {
 		this.qty = qty;
 	}
-
+	
+	@JsonIgnore
 	public ClassifyEntity getClassifyEntity() {
 		return classifyEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setClassifyEntity(ClassifyEntity classifyEntity) {
 		this.classifyEntity = classifyEntity;
 	}
-
+	
+	@JsonIgnore
 	public ProductEntity getProductEntity() {
 		return productEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setProductEntity(ProductEntity productEntity) {
 		this.productEntity = productEntity;
 	}

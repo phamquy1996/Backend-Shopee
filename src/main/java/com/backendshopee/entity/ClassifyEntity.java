@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Classify")
 public class ClassifyEntity extends ParentEntity {
@@ -41,19 +43,21 @@ public class ClassifyEntity extends ParentEntity {
 	public void setQty(Number qty) {
 		this.qty = qty;
 	}
-
+	
+	@JsonIgnore
 	public ProductEntity getProductEntity() {
 		return productEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setProductEntity(ProductEntity productEntity) {
 		this.productEntity = productEntity;
 	}
-
+	
 	public List<SubClassifyEntity> getSubClassifyEntity() {
 		return subClassifyEntity;
 	}
-
+	
 	public void setSubClassifyEntity(List<SubClassifyEntity> subClassifyEntity) {
 		this.subClassifyEntity = subClassifyEntity;
 	}

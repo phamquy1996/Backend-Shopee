@@ -3,6 +3,8 @@ package com.backendshopee.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backendshopee.entity.ShippingEntity;
+
 public class ProductDTO {
 	
 	List<ClasifyDTO> clasifyDTO = new ArrayList<>();
@@ -161,14 +163,6 @@ public class ProductDTO {
 		this.image = image;
 	}
 
-	public List<ShippingDTO> getShippings() {
-		return shippings;
-	}
-
-	public void setShippings(List<ShippingDTO> shippings) {
-		this.shippings = shippings;
-	}
-
 	public Long getCategory_id() {
 		return category_id;
 	}
@@ -192,5 +186,10 @@ public class ProductDTO {
 	public void setCategory_id(Long category_id) {
 		this.category_id = category_id;
 	}
+
+	public List<ShippingDTO> getShippings() {
+		return shippings;
+	}
+
 
 }

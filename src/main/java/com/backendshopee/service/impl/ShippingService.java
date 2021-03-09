@@ -27,4 +27,10 @@ public class ShippingService implements IShippingService{
 		return shippingRepository.findAll();
 	}
 
+	@Override
+	public ShippingEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return shippingRepository.findById(id).get();
+	}
+
 }
