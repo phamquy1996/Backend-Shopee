@@ -20,7 +20,7 @@ import com.backendshopee.security.JwtProvider;
 import com.backendshopee.service.IRoleService;
 import com.backendshopee.service.IUserService;
 @RestController 
-@RequestMapping("/api/auth")
+@RequestMapping("/api/user")
 public class UserController {
 	
 	@Autowired

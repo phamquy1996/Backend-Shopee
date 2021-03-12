@@ -9,10 +9,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MulImageProduct")
 public class MulImageProductEntity extends ParentEntity{
+	
 	@Column(name = "image")
 	private String image;
-	
-	
+
 	@ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
 	private ProductEntity productEntity;

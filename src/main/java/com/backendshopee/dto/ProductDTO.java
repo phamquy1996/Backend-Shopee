@@ -11,6 +11,8 @@ public class ProductDTO {
 	List<ImagesDTO> imagesDTO = new ArrayList<>();
 	List<ShippingDTO> shippings = new ArrayList<>();
 	
+	private Long id;
+	
 	private String name;
 	
 	private String description;
@@ -42,6 +44,8 @@ public class ProductDTO {
 	private Number unit_id;
 	
 	private String image = "0";
+	
+	private Long userSaler_id;
 	
 	public List<ClasifyDTO> getClasifyDTO() {
 		return clasifyDTO;
@@ -189,6 +193,26 @@ public class ProductDTO {
 
 	public List<ShippingDTO> getShippings() {
 		return shippings;
+	}
+
+	public Long getUserSaler_id() {
+		return userSaler_id;
+	}
+
+	public void setUserSaler_id(Long userSaler_id) {
+		this.userSaler_id = userSaler_id;
+	}
+
+	public void setShippings(List<ShippingDTO> shippings) {
+		this.shippings = shippings;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

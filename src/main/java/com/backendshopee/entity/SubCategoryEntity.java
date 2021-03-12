@@ -77,13 +77,13 @@ public class SubCategoryEntity extends ParentEntity{
 		this.childCategories = childCategories;
 	}
 
-//	public List<ProductEntity> getProductEntity() {
-//		return ProductEntity;
-//	}
-//	
-//	public void setProductEntity(List<ProductEntity> productEntity) {
-//		ProductEntity = productEntity;
-//	}
+	public List<ProductEntity> getProducts() {
+		return Products;
+	}
+
+	public void setProducts(List<ProductEntity> products) {
+		Products = products;
+	}
 
 	
 }

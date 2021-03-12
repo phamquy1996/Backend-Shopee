@@ -3,11 +3,13 @@ package com.backendshopee.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -42,7 +44,20 @@ public class UserEntity extends ParentEntity{
 	@JoinTable(name = "user_product", 
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<ProductEntity> products =  new ArrayList<>();
+	private List<ProductEntity> productsFavourite =  new ArrayList<>();
+	
+	@OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+	private List<ProductEntity> products = new ArrayList<>();
+	
+	public void removeClassB(ProductEntity products) {
+		productsFavourite.remove(products);
+        products.getProductsFavourite().remove(this);
+    } 
+	
+	public void checkProduct(ProductEntity products) {
+		productsFavourite.equals(products);
+		products.getProductsFavourite().equals(this);
+	}
 	
 	public String getName() {
 		return name;
@@ -98,6 +113,14 @@ public class UserEntity extends ParentEntity{
 
 	public void setProducts(List<ProductEntity> products) {
 		this.products = products;
+	}
+
+	public List<ProductEntity> getProductsFavourite() {
+		return productsFavourite;
+	}
+
+	public void setProductsFavourite(List<ProductEntity> productsFavourite) {
+		this.productsFavourite = productsFavourite;
 	}
 
 }

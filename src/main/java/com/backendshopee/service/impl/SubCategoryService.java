@@ -44,10 +44,12 @@ public class SubCategoryService implements ISubCategoryService{
 //		CategoryRepository categoryRepository = categoryRepository.findById(subcategoryDTO.getCategory_id());
 //		subCategoryRepository.save(subCategoryEntity);
 //	}
+	
 	@Override
 	public SubCategoryEntity findById(Long id) {
 		return subCategoryRepository.findById(id).get();
 	}
+	
 	@Override
 	public void addSubCategory(SubcategoryDTO subcategoryDTO) {
 		SubCategoryEntity subCategoryEntity = new SubCategoryEntity();

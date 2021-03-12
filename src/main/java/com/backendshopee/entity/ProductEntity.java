@@ -3,8 +3,10 @@ package com.backendshopee.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -70,6 +72,10 @@ public class ProductEntity extends ParentEntity{
 	private SubCategoryEntity subCategoryEntity;
 	
 	@ManyToOne
+    @JoinColumn(name = "userSaler_id", nullable = false)
+	private UserEntity userEntity;
+	
+	@ManyToOne
     @JoinColumn(name = "childCategory_id", nullable = false)
 	private ChildCategoryEntity childCategoryEntity;
 	
@@ -88,6 +94,38 @@ public class ProductEntity extends ParentEntity{
 				inverseJoinColumns = @JoinColumn(name = "shipping_id"))
 	private List<ShippingEntity> shippings =  new ArrayList<>();
 	
+	public Long getCategory_id(){
+        return categoryentity.getId();
+    }
+	
+    public String getCategoryName(){
+        return categoryentity.getName();
+    }
+    
+    public Long getSubcategory_id(){
+        return subCategoryEntity.getId();
+    }
+	
+    public String getSubcategoryName(){
+        return subCategoryEntity.getName();
+    }
+    
+    public Long getChildCategory_id(){
+        return childCategoryEntity.getId();
+    }
+	
+    public String getChildCategoryName(){
+        return childCategoryEntity.getName();
+    }
+    
+    public Long getUserSalerid(){
+        return userEntity.getId();
+    }
+	
+    public String getUserName(){
+        return userEntity.getName();
+    }
+    
 	public String getName() {
 		return name;
 	}
@@ -167,6 +205,10 @@ public class ProductEntity extends ParentEntity{
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productsFavourite", cascade = CascadeType.ALL)
+    private List<UserEntity> productsFavourite;
+	
 	
 	@JsonIgnore
 	public CategoryEntity getCategoryentity() {
@@ -253,5 +295,24 @@ public class ProductEntity extends ParentEntity{
 	public void setMulImageProducts(List<MulImageProductEntity> mulImageProducts) {
 		MulImageProducts = mulImageProducts;
 	}
+	
+	@JsonIgnore
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+	
+	@JsonIgnore
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
+	}
+
+	public List<UserEntity> getProductsFavourite() {
+		return productsFavourite;
+	}
+
+	public void setProductsFavourite(List<UserEntity> productsFavourite) {
+		this.productsFavourite = productsFavourite;
+	}
+
 
 }

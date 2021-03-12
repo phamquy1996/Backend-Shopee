@@ -34,7 +34,7 @@ public class ChildCategoryEntity extends ParentEntity {
     @JoinColumn(name = "subcategory_id", nullable = false)
 	private SubCategoryEntity subCategoryEntity;
 	
-	@OneToMany(mappedBy = "childCategoryEntity")
+	@OneToMany(mappedBy = "childCategoryEntity") 
 	private List<ProductEntity> ProductEntity = new ArrayList<>();
 	
 	public String getName() {

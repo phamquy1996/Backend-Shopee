@@ -11,5 +11,7 @@ public interface IUserService {
 	public void deleteUser(long id);
 	public void editUser(long id);
 	public String login(UserEntity userEntity);
+	public UserEntity findById(Long id);
+	public void favoriteProduct(Long id);
 	public Optional<org.springframework.security.core.userdetails.User> getCurrentUser();
 }

@@ -21,10 +21,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name = "Category")
 public class CategoryEntity extends ParentEntity {
 	
-	
+//	@NotNull
+//    @Size(min = 4, max = 40, message = "Age should not be less than 18")
 	@Column(name = "name")
-	@NotNull
-    @Size(min = 4, max = 15, message = "Age should not be less than 18")
 	private String name;
 	
 	@Column(name = "image")
@@ -54,20 +53,32 @@ public class CategoryEntity extends ParentEntity {
 	
 	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
 	private List<ProductEntity> Products = new ArrayList<>();
+
+	public List<SubCategoryEntity> getSubCategories() {
+		return SubCategories;
+	}
+
+	public void setSubCategories(List<SubCategoryEntity> subCategories) {
+		SubCategories = subCategories;
+	}
+
+	public List<ChildCategoryEntity> getChildCategories() {
+		return ChildCategories;
+	}
+
+	public void setChildCategories(List<ChildCategoryEntity> childCategories) {
+		ChildCategories = childCategories;
+	}
+
+	public List<ProductEntity> getProducts() {
+		return Products;
+	}
+
+	public void setProducts(List<ProductEntity> products) {
+		Products = products;
+	}
 	
     
-	public List<SubCategoryEntity> getSubCategories() {
-		return this.SubCategories == null ? null : new ArrayList<>(this.SubCategories); 
-	}
-	
-	public void setSubCategories(List<SubCategoryEntity> subCategories) {
-		if (subCategories == null) {
-			this.SubCategories = null;
-		} else {
-			this.SubCategories = Collections.unmodifiableList(subCategories);
-		}
-	}
-	
 //	@JsonManagedReference
 //	public List<ChildCategoryEntity> getChildCategoryEntity() {
 //		return ChildCategoryEntity;

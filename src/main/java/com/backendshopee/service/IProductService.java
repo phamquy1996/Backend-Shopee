@@ -9,4 +9,5 @@ public interface IProductService {
 	public void addProduct(ProductDTO productDTO);
 	public ProductEntity findById(Long id);
 	public List<ProductEntity> all(); 
+	public ProductEntity findByProduct(Long id);
 }
