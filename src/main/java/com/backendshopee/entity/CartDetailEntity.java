@@ -1,35 +1,38 @@
 package com.backendshopee.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CartDetail")
 public class CartDetailEntity extends ParentEntity {
 	
 	@Column(name = "qty")
-	private Number qty;
+	private int qty;
 	
 	@Column(name = "checkBuy")
 	private Number checkBuy = 0;
 	
-	@Column(name = "product_id")
-	private String product_id;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
 	
 	@Column(name = "user_id_buyer")
 	private String user_id_buyer;
 	
 	@Column(name = "user_id_saler")
 	private String user_id_saler;
-
-	public Number getQty() {
-		return qty;
-	}
-
-	public void setQty(Number qty) {
-		this.qty = qty;
-	}
+	
+	@ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+	private CartEntity cart;
 
 	public Number getCheckBuy() {
 		return checkBuy;
@@ -37,14 +40,6 @@ public class CartDetailEntity extends ParentEntity {
 
 	public void setCheckBuy(Number checkBuy) {
 		this.checkBuy = checkBuy;
-	}
-
-	public String getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(String product_id) {
-		this.product_id = product_id;
 	}
 
 	public String getUser_id_buyer() {
@@ -61,6 +56,32 @@ public class CartDetailEntity extends ParentEntity {
 
 	public void setUser_id_saler(String user_id_saler) {
 		this.user_id_saler = user_id_saler;
+	}
+	
+	@JsonIgnore
+	public CartEntity getCart() {
+		return cart;
+	}
+	
+	@JsonIgnore
+	public void setCart(CartEntity cart) {
+		this.cart = cart;
+	}
+	
+	public ProductEntity getProduct() {
+		return product;
+	}
+	
+	public void setProduct(ProductEntity product) {
+		this.product = product;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
 	}
 	
 }

@@ -2,7 +2,6 @@ package com.backendshopee.entity;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,12 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "Category")
 public class CategoryEntity extends ParentEntity {
@@ -51,7 +46,7 @@ public class CategoryEntity extends ParentEntity {
 	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
 	private List<ChildCategoryEntity> ChildCategories = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ProductEntity> Products = new ArrayList<>();
 
 	public List<SubCategoryEntity> getSubCategories() {
@@ -69,11 +64,13 @@ public class CategoryEntity extends ParentEntity {
 	public void setChildCategories(List<ChildCategoryEntity> childCategories) {
 		ChildCategories = childCategories;
 	}
-
+	
+//	@JsonIgnore
 	public List<ProductEntity> getProducts() {
 		return Products;
 	}
-
+	
+//	@JsonIgnore
 	public void setProducts(List<ProductEntity> products) {
 		Products = products;
 	}

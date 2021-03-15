@@ -15,7 +15,10 @@ public class SubClassifyEntity extends ParentEntity {
 	private String name;
 	
 	@Column(name = "qty")
-	private Number qty;
+	private int qty;
+	
+	@Column(name = "price")
+	private int price;
 	
 	@ManyToOne
     @JoinColumn(name = "classify_id", nullable = false)
@@ -31,14 +34,6 @@ public class SubClassifyEntity extends ParentEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Number getQty() {
-		return qty;
-	}
-
-	public void setQty(Number qty) {
-		this.qty = qty;
 	}
 	
 	@JsonIgnore
@@ -59,5 +54,21 @@ public class SubClassifyEntity extends ParentEntity {
 	@JsonIgnore
 	public void setProductEntity(ProductEntity productEntity) {
 		this.productEntity = productEntity;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 }

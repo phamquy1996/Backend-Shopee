@@ -17,4 +17,5 @@ public interface ISubCategoryService {
 	public List<SubCategoryEntity> findByLastnameOrFirstname(String pageNo, String pageSize);
 	List<SubCategoryEntity> findByLastnameOrFirstname(String pageNo, String pageSize, Pageable pageable);
 	int totalItem();
+	public CategoryEntity findBySubCateAndProduct(Long id);
 }

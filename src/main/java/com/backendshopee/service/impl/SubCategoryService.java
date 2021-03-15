@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.backendshopee.dto.SubcategoryDTO;
 import com.backendshopee.entity.CategoryEntity;
+import com.backendshopee.entity.ProductEntity;
 import com.backendshopee.entity.SubCategoryEntity;
 import com.backendshopee.repository.CategoryRepository;
 import com.backendshopee.repository.PaginateRepository;
@@ -92,6 +93,15 @@ public class SubCategoryService implements ISubCategoryService{
 	public int totalItem() {
 		// TODO Auto-generated method stub
 		return (int) subCategoryRepository.count();
+	}
+	
+	@Override
+	public CategoryEntity findBySubCateAndProduct(Long id) {
+		// TODO Auto-generated method stub
+		SubCategoryEntity subCategory = subCategoryRepository.findById(id).get();
+		CategoryEntity category = categoryRepository.findById(subCategory.getAuthor_id()).get();
+		category.setProducts(subCategory.getProducts());
+		return category;
 	}
 
 }

@@ -3,11 +3,13 @@ package com.backendshopee.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,24 +42,28 @@ public class UserEntity extends ParentEntity{
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<RoleEntity> roles =  new ArrayList<>();
 	
-	@ManyToMany
-	@JoinTable(name = "user_product", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<ProductEntity> productsFavourite =  new ArrayList<>();
-	
-	@OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+//	@ManyToMany
+//	@JoinTable(name = "user_product", 
+//				joinColumns = @JoinColumn(name = "user_id"), 
+//				inverseJoinColumns = @JoinColumn(name = "product_id"))
+//	private List<ProductEntity> productsFavourite =  new ArrayList<>();
+//	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
 	private List<ProductEntity> products = new ArrayList<>();
+//	
+//	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
+	private List<CartEntity> carts = new ArrayList<>();
 	
-	public void removeClassB(ProductEntity products) {
-		productsFavourite.remove(products);
-        products.getProductsFavourite().remove(this);
-    } 
-	
-	public void checkProduct(ProductEntity products) {
-		productsFavourite.equals(products);
-		products.getProductsFavourite().equals(this);
-	}
+//	public void removeClassB(ProductEntity product) {
+//		productsFavourite.remove(product);
+//        product.getProductsFavourite().remove(this);
+//    } 
+//	
+//	public void addClassB(ProductEntity product) {
+//		productsFavourite.add(product);
+//        product.getProductsFavourite().add(this);
+//    } 
 	
 	public String getName() {
 		return name;
@@ -106,7 +112,7 @@ public class UserEntity extends ParentEntity{
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
-
+	
 	public List<ProductEntity> getProducts() {
 		return products;
 	}
@@ -114,13 +120,27 @@ public class UserEntity extends ParentEntity{
 	public void setProducts(List<ProductEntity> products) {
 		this.products = products;
 	}
-
-	public List<ProductEntity> getProductsFavourite() {
-		return productsFavourite;
+//
+//	public List<ProductEntity> getProductsFavourite() {
+//		return productsFavourite;
+//	}
+//
+//	public void setProductsFavourite(List<ProductEntity> productsFavourite) {
+//		this.productsFavourite = productsFavourite;
+//	}
+//
+	public List<CartEntity> getCarts() {
+		return carts;
 	}
 
-	public void setProductsFavourite(List<ProductEntity> productsFavourite) {
-		this.productsFavourite = productsFavourite;
+	public void setCarts(List<CartEntity> carts) {
+		this.carts = carts;
+	}
+
+	@Override
+	public String toString() {
+		return "UserEntity [name=" + name + ", email=" + email + ", password=" + password + ", avatar=" + avatar
+				+ ", token=" + token + ", roles=" + roles + ", products=" + products + ", carts=" + carts + "]";
 	}
 
 }

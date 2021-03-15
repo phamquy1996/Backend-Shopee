@@ -47,6 +47,10 @@ public class ProductDTO {
 	
 	private Long userSaler_id;
 	
+	private Number number;
+	
+	private Number totalPages;
+	
 	public List<ClasifyDTO> getClasifyDTO() {
 		return clasifyDTO;
 	}
@@ -213,6 +217,22 @@ public class ProductDTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Number getNumber() {
+		return number;
+	}
+
+	public void setNumber(Number number) {
+		this.number = number;
+	}
+
+	public Number getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(Number totalPages) {
+		this.totalPages = totalPages;
 	}
 
 

@@ -16,5 +16,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>{
 //	@Query( "SELECT u.name, ur.roles FROM UserEntity u INNER JOIN user_role ur ON u.user_id = 1" )
 //	List<UserEntity> getAdminList();
 
-
+	
 }

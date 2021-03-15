@@ -90,16 +90,24 @@ public class UserService implements IUserService {
 //		user.removeClassB(product);
 //		user.setProductsFavourite(products);
 //		System.out.print(userRepository.getAdminList());
-		user.getProductsFavourite();
-		if(user.getProductsFavourite().isEmpty()) {
-			System.out.print("empty");
-			user.setProductsFavourite(products);
-			userRepository.save(user);
-		}else {
-			System.out.print("dont empty");
-			user.removeClassB(product);
-			userRepository.save(user);
-		}
+//		user.getProductsFavourite();
+//		if(user.getProductsFavourite().isEmpty()) {
+//			user.addClassB(product);
+//			userRepository.save(user);
+//			
+//		}else {
+//			for (ProductEntity productEntity:user.getProductsFavourite()) {
+//				if (productEntity.getId() == product.getId()) {
+//					user.removeClassB(product);
+//					userRepository.save(user);
+//				} else {
+//					System.out.print("Đã có");
+//					user.addClassB(product);
+//					userRepository.save(user);
+//				}
+//			}
+//				
+//		}
 //		for (ProductEntity productEntity:user.getProductsFavourite()) {
 //			System.out.print("ok");
 //			if (productEntity.getId() == product.getId()) {
@@ -113,6 +121,13 @@ public class UserService implements IUserService {
 //			}
 //		}
 //		userRepository.save(user);
+	}
+
+	@Override
+	public UserEntity findByName(String name) {
+		// TODO Auto-generated method stub
+		UserEntity user = userRepository.findByName(name);
+		return user;
 	}
 
 }

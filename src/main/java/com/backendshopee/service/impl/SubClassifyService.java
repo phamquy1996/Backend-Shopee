@@ -35,7 +35,8 @@ public class SubClassifyService implements ISubClassifyService{
 			subClassifyEntity.setProductEntity(productEntity);
 			subClassifyEntity.setClassifyEntity(classifyEntity);
 			subClassifyEntity.setName(item.getName());
-			System.out.print(item.getName());
+			subClassifyEntity.setQty(item.getQty());
+			subClassifyEntity.setPrice(item.getPrice());
 			subClassifyRepository.save(subClassifyEntity);
 		}
 	}

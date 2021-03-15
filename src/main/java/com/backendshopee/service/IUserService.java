@@ -12,6 +12,7 @@ public interface IUserService {
 	public void editUser(long id);
 	public String login(UserEntity userEntity);
 	public UserEntity findById(Long id);
+	public UserEntity findByName(String name);
 	public void favoriteProduct(Long id);
 	public Optional<org.springframework.security.core.userdetails.User> getCurrentUser();
 }

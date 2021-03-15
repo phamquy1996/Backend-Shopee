@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Product")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ProductEntity extends ParentEntity{
 	@Column(name = "name", nullable = true, unique = true)
 	private String name;
@@ -73,13 +74,13 @@ public class ProductEntity extends ParentEntity{
 	
 	@ManyToOne
     @JoinColumn(name = "userSaler_id", nullable = false)
-	private UserEntity userEntity;
+	private UserEntity userEntity; 
 	
 	@ManyToOne
     @JoinColumn(name = "childCategory_id", nullable = false)
 	private ChildCategoryEntity childCategoryEntity;
 	
-	@OneToMany(mappedBy = "productEntity")
+	@OneToMany(mappedBy = "productEntity",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true) 
 	private List<ClassifyEntity> classifyEntity = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "productEntity")
@@ -93,6 +94,9 @@ public class ProductEntity extends ParentEntity{
 				joinColumns = @JoinColumn(name = "product_id"), 
 				inverseJoinColumns = @JoinColumn(name = "shipping_id"))
 	private List<ShippingEntity> shippings =  new ArrayList<>();
+	
+//	@OneToOne(mappedBy = "product")
+//    private CartDetailEntity CartDetailEntity;  
 	
 	public Long getCategory_id(){
         return categoryentity.getId();
@@ -117,6 +121,7 @@ public class ProductEntity extends ParentEntity{
     public String getChildCategoryName(){
         return childCategoryEntity.getName();
     }
+    
     
     public Long getUserSalerid(){
         return userEntity.getId();
@@ -206,8 +211,8 @@ public class ProductEntity extends ParentEntity{
 		this.image = image;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productsFavourite", cascade = CascadeType.ALL)
-    private List<UserEntity> productsFavourite;
+//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productsFavourite", cascade = CascadeType.ALL)
+//    private List<UserEntity> ListUsers;
 	
 	
 	@JsonIgnore
@@ -239,7 +244,7 @@ public class ProductEntity extends ParentEntity{
 	public void setChildCategoryEntity(ChildCategoryEntity childCategoryEntity) {
 		this.childCategoryEntity = childCategoryEntity;
 	}
-
+	
 	public List<ClassifyEntity> getClassifyEntity() {
 		return classifyEntity;
 	}
@@ -301,18 +306,24 @@ public class ProductEntity extends ParentEntity{
 		return userEntity;
 	}
 	
-	@JsonIgnore
 	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
-
-	public List<UserEntity> getProductsFavourite() {
-		return productsFavourite;
+	
+	public List<RoleEntity> getProductsFavourite() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-	public void setProductsFavourite(List<UserEntity> productsFavourite) {
-		this.productsFavourite = productsFavourite;
-	}
+	
+//	@JsonIgnore
+//	public CartDetailEntity getCartDetailEntity() {
+//		return CartDetailEntity;
+//	}
+//	
+//	@JsonIgnore
+//	public void setCartDetailEntity(CartDetailEntity cartDetailEntity) {
+//		CartDetailEntity = cartDetailEntity;
+//	}
 
 
 }

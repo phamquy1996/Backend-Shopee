@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "MulImageProduct")
 public class MulImageProductEntity extends ParentEntity{
@@ -24,11 +26,13 @@ public class MulImageProductEntity extends ParentEntity{
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	
+	@JsonIgnore
 	public ProductEntity getProductEntity() {
 		return productEntity;
 	}
-
+	
+	@JsonIgnore
 	public void setProductEntity(ProductEntity productEntity) {
 		this.productEntity = productEntity;
 	}
