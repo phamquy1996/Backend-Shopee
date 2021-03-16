@@ -20,7 +20,7 @@ public class CartDetailEntity extends ParentEntity {
 	@Column(name = "checkBuy")
 	private Number checkBuy = 0;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 	

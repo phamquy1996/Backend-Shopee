@@ -137,10 +137,4 @@ public class UserEntity extends ParentEntity{
 		this.carts = carts;
 	}
 
-	@Override
-	public String toString() {
-		return "UserEntity [name=" + name + ", email=" + email + ", password=" + password + ", avatar=" + avatar
-				+ ", token=" + token + ", roles=" + roles + ", products=" + products + ", carts=" + carts + "]";
-	}
-
 }

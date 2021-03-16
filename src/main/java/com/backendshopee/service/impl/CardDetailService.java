@@ -23,11 +23,8 @@ public class CardDetailService implements ICartDetailService {
 		// TODO Auto-generated method stub
 		if(status=="update") {
 			List<CartDetailEntity> cartDetails = cartDetailRepository.findAll(); 
-			System.out.print("chay vao day NASDSDAASD");
 			for(CartDetailEntity item:cartDetails) {
-				System.out.print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 				if(item.getProduct().equals(product)) {
-					System.out.print("chay vao day khong");
 					item.setProduct(product);
 					item.setCart(cart);
 					item.setQty(item.getQty() + 1);
@@ -35,19 +32,18 @@ public class CardDetailService implements ICartDetailService {
 					return;
 				}
 			}
-			
 			CartDetailEntity cartDetail = new CartDetailEntity(); 
 			cartDetail.setProduct(product);
 			cartDetail.setCart(cart);
 			cartDetail.setQty(1);
-			System.out.print("ok thi choi");
+			cartDetail.setStatus(1);
 			cartDetailRepository.save(cartDetail);
 		}else {
 			CartDetailEntity cartDetail = new CartDetailEntity(); 
 			cartDetail.setProduct(product);
 			cartDetail.setCart(cart);
 			cartDetail.setQty(1);
-			System.out.print("chay vao day");
+			cartDetail.setStatus(1);
 			cartDetailRepository.save(cartDetail);
 		}
 		
