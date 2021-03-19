@@ -1,5 +1,7 @@
 package com.backendshopee.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +30,8 @@ public class DetailController {
 	}
 	
 	@PostMapping("/addToCart")
-	public ProductDTO addToCart(@RequestBody ProductDTO model) {
-		iCartService.addToCart(model.getId());
-		return null;
+	public ProductDTO addToCart(@Valid @RequestBody ProductDTO model) {
+		iCartService.addToCart(model);
+		return model;
 	}
 }

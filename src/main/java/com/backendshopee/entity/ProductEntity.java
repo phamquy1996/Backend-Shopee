@@ -13,12 +13,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Product")
@@ -63,6 +60,21 @@ public class ProductEntity extends ParentEntity{
 	
 	@Column(name = "image")
 	private String image = "0";
+	
+	@Column(name = "pricemax")
+	private Integer pricemax;
+	
+	@Column(name = "pricemin")
+	private Integer pricemin;
+	
+	@Column(name = "isNew")
+	private Integer isNew;
+	
+	@Column(name = "isOrderBefore")
+	private Integer isOrderBefore;
+	
+	@Column(name = "video")
+	private String video = "0";
 	
 	@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -314,6 +326,47 @@ public class ProductEntity extends ParentEntity{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Integer getPricemax() {
+		return pricemax;
+	}
+
+	public void setPricemax(Integer pricemax) {
+		this.pricemax = pricemax;
+	}
+
+	public Integer getPricemin() {
+		return pricemin;
+	}
+
+	public void setPricemin(Integer pricemin) {
+		this.pricemin = pricemin;
+	}
+
+	public Integer getIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(Integer isNew) {
+		this.isNew = isNew;
+	}
+
+	public Integer getIsOrderBefore() {
+		return isOrderBefore;
+	}
+
+	public void setIsOrderBefore(Integer isOrderBefore) {
+		this.isOrderBefore = isOrderBefore;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
 	
 //	@JsonIgnore
 //	public CartDetailEntity getCartDetailEntity() {

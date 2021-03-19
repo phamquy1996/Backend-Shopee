@@ -9,26 +9,27 @@ public class ClasifyDTO {
 	private List<SubClassifyEntity> subClassifies = new ArrayList<>();
 	
 	private String name;
-	private Number qty = 0;
-	private Number price = 0;
+	private Integer qty = 0;
+	private Integer price = 0;
 	private Long product_id;
-
+	private String image;
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Number getQty() {
+	public Integer getQty() {
 		return qty;
 	}
-	public void setQty(Number qty) {
+	public void setQty(Integer qty) {
 		this.qty = qty;
 	}
-	public Number getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(Number price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	public List<SubClassifyEntity> getSubClassifies() {
@@ -42,6 +43,12 @@ public class ClasifyDTO {
 	}
 	public void setProduct_id(Long product_id) {
 		this.product_id = product_id;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }

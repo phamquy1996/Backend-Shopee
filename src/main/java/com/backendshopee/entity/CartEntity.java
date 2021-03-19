@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,6 +31,9 @@ public class CartEntity extends ParentEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id_saler", nullable = false)
 	private UserEntity user;
+	
+	@Column(name = "price")
+	private Integer price;
 	
 	@JsonIgnore
 	public UserEntity getUser_buyer() {
@@ -65,6 +69,14 @@ public class CartEntity extends ParentEntity {
 	@JsonIgnore
 	public void setUser(UserEntity user) {
 		this.user = user;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 

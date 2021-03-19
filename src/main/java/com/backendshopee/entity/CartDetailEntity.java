@@ -1,6 +1,5 @@
 package com.backendshopee.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -15,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class CartDetailEntity extends ParentEntity {
 	
 	@Column(name = "qty")
-	private int qty;
+	private Integer qty;
 	
 	@Column(name = "checkBuy")
 	private Number checkBuy = 0;
@@ -29,6 +28,12 @@ public class CartDetailEntity extends ParentEntity {
 	
 	@Column(name = "user_id_saler")
 	private String user_id_saler;
+	
+	@Column(name = "classify_id")
+	private Integer classify_id;
+	
+	@Column(name = "subclassify_id")
+	private Integer subclassify_id;
 	
 	@ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
@@ -82,6 +87,22 @@ public class CartDetailEntity extends ParentEntity {
 
 	public void setQty(int qty) {
 		this.qty = qty;
+	}
+
+	public Integer getClassify_id() {
+		return classify_id;
+	}
+
+	public void setClassify_id(Integer classify_id) {
+		this.classify_id = classify_id;
+	}
+
+	public Integer getSubclassify_id() {
+		return subclassify_id;
+	}
+
+	public void setSubclassify_id(Integer subclassify_id) {
+		this.subclassify_id = subclassify_id;
 	}
 	
 }

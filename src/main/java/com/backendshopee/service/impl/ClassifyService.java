@@ -34,6 +34,9 @@ public class ClassifyService implements IClassifyService {
 			ProductEntity productEntity = iProductService.findById(product_id);
 			classifyentity.setProductEntity(productEntity);
 			classifyentity.setName(item.getName());
+			classifyentity.setPrice(item.getPrice());
+			classifyentity.setQty(item.getQty());
+//			classifyentity.setImage(item.getImage);
 			classifyRepository.save(classifyentity);
 			iSubClassifyService.addSubClassify(item, product_id, classifyentity.getId());
 		}

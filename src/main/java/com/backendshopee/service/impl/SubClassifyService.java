@@ -41,4 +41,10 @@ public class SubClassifyService implements ISubClassifyService{
 		}
 	}
 
+	@Override
+	public SubClassifyEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return subClassifyRepository.findById(id).get();
+	}
+
 }

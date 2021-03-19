@@ -3,8 +3,6 @@ package com.backendshopee.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backendshopee.entity.ShippingEntity;
-
 public class ProductDTO {
 	
 	List<ClasifyDTO> clasifyDTO = new ArrayList<>();
@@ -19,7 +17,7 @@ public class ProductDTO {
 	
 	private Float price;
 	
-	private String Subclassfly;
+	private String subclassify;
 	
 	private String classfly;
 	
@@ -35,7 +33,7 @@ public class ProductDTO {
 	
 	private Number view = 0;
 	
-	private Number qty = 0;
+	private int qty;
 	
 	private String content_discount;
 	
@@ -44,6 +42,22 @@ public class ProductDTO {
 	private Number unit_id;
 	
 	private String image = "0";
+	
+	private String classify;
+	
+	private Integer classify_id;
+	
+	private Integer subclassify_id;
+	
+	private Integer pricemax;
+	
+	private Integer pricemin;
+	
+	private Integer isNew;
+	
+	private Integer isOrderBefore;
+	
+	private String video;
 	
 	private Long userSaler_id;
 	
@@ -91,14 +105,6 @@ public class ProductDTO {
 		this.price = price;
 	}
 
-	public String getSubclassfly() {
-		return Subclassfly;
-	}
-
-	public void setSubclassfly(String subclassfly) {
-		Subclassfly = subclassfly;
-	}
-
 	public String getClassfly() {
 		return classfly;
 	}
@@ -129,14 +135,6 @@ public class ProductDTO {
 
 	public void setView(Number view) {
 		this.view = view;
-	}
-
-	public Number getQty() {
-		return qty;
-	}
-
-	public void setQty(Number qty) {
-		this.qty = qty;
 	}
 
 	public String getContent_discount() {
@@ -233,6 +231,86 @@ public class ProductDTO {
 
 	public void setTotalPages(Number totalPages) {
 		this.totalPages = totalPages;
+	}
+
+	public String getClassify() {
+		return classify;
+	}
+
+	public void setClassify(String classify) {
+		this.classify = classify;
+	}
+
+	public String getSubclassify() {
+		return subclassify;
+	}
+
+	public void setSubclassify(String subclassify) {
+		this.subclassify = subclassify;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	public Integer getPricemax() {
+		return pricemax;
+	}
+
+	public void setPricemax(Integer pricemax) {
+		this.pricemax = pricemax;
+	}
+
+	public Integer getPricemin() {
+		return pricemin;
+	}
+
+	public void setPricemin(Integer pricemin) {
+		this.pricemin = pricemin;
+	}
+
+	public Integer getIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(Integer isNew) {
+		this.isNew = isNew;
+	}
+
+	public Integer getIsOrderBefore() {
+		return isOrderBefore;
+	}
+
+	public void setIsOrderBefore(Integer isOrderBefore) {
+		this.isOrderBefore = isOrderBefore;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public Integer getClassify_id() {
+		return classify_id;
+	}
+
+	public void setClassify_id(Integer classify_id) {
+		this.classify_id = classify_id;
+	}
+
+	public Integer getSubclassify_id() {
+		return subclassify_id;
+	}
+
+	public void setSubclassify_id(Integer subclassify_id) {
+		this.subclassify_id = subclassify_id;
 	}
 
 

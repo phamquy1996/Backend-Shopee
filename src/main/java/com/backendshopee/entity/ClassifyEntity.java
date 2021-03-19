@@ -31,6 +31,12 @@ public class ClassifyEntity extends ParentEntity {
 	public String getName() {
 		return name;
 	}
+	
+	@Column(name = "price")
+	private Integer price;
+	
+	@Column(name = "image")
+	private String image;
 
 	public void setName(String name) {
 		this.name = name;
@@ -60,5 +66,21 @@ public class ClassifyEntity extends ParentEntity {
 	
 	public void setSubClassifyEntity(List<SubClassifyEntity> subClassifyEntity) {
 		this.subClassifyEntity = subClassifyEntity;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

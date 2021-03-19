@@ -38,4 +38,12 @@ public class ProductController {
 	public ProductEntity ak(@PathVariable(value = "id") long id){
 		return iProductService.findById(id);
 	}
+
+	public IProductService getiProductService() {
+		return iProductService;
+	}
+
+	public void setiProductService(IProductService iProductService) {
+		this.iProductService = iProductService;
+	}
 }

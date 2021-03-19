@@ -58,6 +58,15 @@ public class ProductService implements IProductService{
 		productEntity.setChildCategoryEntity(childCategoryEnyity);
 		productEntity.setSubCategoryEntity(subCategoryEntity);
 		productEntity.setGram(productDTO.getGram());
+		productEntity.setPrice(productDTO.getPrice());
+		productEntity.setQty(productDTO.getQty());
+		productEntity.setPricemax(productDTO.getPricemax());
+		productEntity.setPricemin(productDTO.getPricemin());
+		productEntity.setVideo(productDTO.getVideo());
+		productEntity.setIsNew(productDTO.getIsNew());
+		productEntity.setIsOrderBefore(productDTO.getIsOrderBefore());
+		productEntity.setClassfly(productDTO.getClassfly());
+		productEntity.setSubclassfly(productDTO.getSubclassify());
 		productEntity.setName(productDTO.getName());
 		productEntity.setImage(productDTO.getImage());
 		List<ShippingEntity> shippings = new ArrayList<>();

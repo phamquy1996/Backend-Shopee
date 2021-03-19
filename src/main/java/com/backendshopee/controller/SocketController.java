@@ -48,7 +48,9 @@ public class SocketController {
 	public MessageEntity addPrivateUser(@Payload MessageEntity chatMessage,
 			SimpMessageHeaderAccessor headerAccessor) {
 		// Add user in web socket session
+//		System.out.print(headerAccessor.getSessionAttributes());
 		headerAccessor.getSessionAttributes().put("private-username", chatMessage.getSender());
+		System.out.print(headerAccessor.getSessionAttributes().get("username"));
 		return chatMessage;
 	}
 

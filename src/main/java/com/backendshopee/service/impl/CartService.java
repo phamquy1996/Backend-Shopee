@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backendshopee.dto.ProductDTO;
 import com.backendshopee.entity.CartDetailEntity;
 import com.backendshopee.entity.CartEntity;
 import com.backendshopee.entity.ProductEntity;
@@ -34,8 +35,8 @@ public class CartService implements ICartService {
 	ICartDetailService iCartDetailService;
 	
 	@Override
-	public boolean addToCart(Long id) {
-		ProductEntity product = iProductService.findById(id);
+	public boolean addToCart(ProductDTO productDTO) {
+		ProductEntity product = iProductService.findById(productDTO.getId());
 		UserEntity userSaler = iUserService.findById(product.getUserSalerid());
 		UserEntity userBuyer = iUserService.findByName("admin");
 		
@@ -48,11 +49,11 @@ public class CartService implements ICartService {
 			cart.setUser_buyer(userSaler);
 			cartRepository.save(cart);
 			String status = "add";
-			iCartDetailService.addCartDetail(status, cart, product);
+			iCartDetailService.addCartDetail(status, cart, product, productDTO);
 		}else {
-			System.out.print(cartfind.get(0).getId());
+//			System.out.print(cartfind.get(0).getId());
 			String status = "update";
-			iCartDetailService.addCartDetail(status,  cartfind.get(0), product);
+			iCartDetailService.addCartDetail(status, cartfind.get(0), product, productDTO);
 		}
 
 		return false;
