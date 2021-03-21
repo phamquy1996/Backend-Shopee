@@ -2,7 +2,12 @@ package com.backendshopee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "BillDetail")
 public class BillDetailEntiy extends ParentEntity {
@@ -13,26 +18,36 @@ public class BillDetailEntiy extends ParentEntity {
 	private String content;
 	
 	@Column(name = "price")
-	private Number price;
+	private Integer price;
 	
 	@Column(name = "qty")
-	private Number qty;
+	private Integer qty;
 	
 	@Column(name = "image")
 	private String image = "0";
 	
-	@Column(name = "bill_id")
-	private Number bill_id;
-	
-	@Column(name = "product_id")
-	private Number product_id;
+	@OneToOne
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
 	
 	@Column(name = "user_id_buyer")
 	private Number user_id_buyer;
 	
 	@Column(name = "user_id_saler")
 	private Number user_id_saler;
-
+	
+	@ManyToOne
+    @JoinColumn(name = "bill_id")
+	private BillEntity bill;
+	
+	
+	@Column(name = "classify_id")
+	private Integer classify_id;
+	
+	@Column(name = "subclassify_id")
+	private Integer subclassify_id;
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -49,21 +64,6 @@ public class BillDetailEntiy extends ParentEntity {
 		this.content = content;
 	}
 
-	public Number getPrice() {
-		return price;
-	}
-
-	public void setPrice(Number price) {
-		this.price = price;
-	}
-
-	public Number getQty() {
-		return qty;
-	}
-
-	public void setQty(Number qty) {
-		this.qty = qty;
-	}
 
 	public String getImage() {
 		return image;
@@ -71,22 +71,6 @@ public class BillDetailEntiy extends ParentEntity {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public Number getBill_id() {
-		return bill_id;
-	}
-
-	public void setBill_id(Number bill_id) {
-		this.bill_id = bill_id;
-	}
-
-	public Number getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(Number product_id) {
-		this.product_id = product_id;
 	}
 
 	public Number getUser_id_buyer() {
@@ -103,6 +87,54 @@ public class BillDetailEntiy extends ParentEntity {
 
 	public void setUser_id_saler(Number user_id_saler) {
 		this.user_id_saler = user_id_saler;
+	}
+	@JsonIgnore
+	public BillEntity getBill() {
+		return bill;
+	}
+	@JsonIgnore
+	public void setBill(BillEntity bill) {
+		this.bill = bill;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
+	}
+	
+	public ProductEntity getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductEntity product) {
+		this.product = product;
+	}
+
+	public Integer getClassify_id() {
+		return classify_id;
+	}
+
+	public void setClassify_id(Integer classify_id) {
+		this.classify_id = classify_id;
+	}
+
+	public Integer getSubclassify_id() {
+		return subclassify_id;
+	}
+
+	public void setSubclassify_id(Integer subclassify_id) {
+		this.subclassify_id = subclassify_id;
 	}
 	
 }

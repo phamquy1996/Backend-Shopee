@@ -8,7 +8,7 @@ public class SubcategoryDTO {
 	
 	private Long category_id;
 	
-	private Long status;
+	private int status;
 	
 	public String getName() {
 		return name;
@@ -34,11 +34,11 @@ public class SubcategoryDTO {
 		this.category_id = category_id;
 	}
 
-	public Long getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	

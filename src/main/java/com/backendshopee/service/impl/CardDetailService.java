@@ -22,6 +22,7 @@ public class CardDetailService implements ICartDetailService {
 	@Override
 	public void addCartDetail(String status, CartEntity cart, ProductEntity product,ProductDTO productDTO) {
 		// TODO Auto-generated method stub
+		System.out.print("ádddddddddddddddddddddddddddddddddddddddđsâdsadsádsad");
 		int check = 0;
 		if(status=="update") {
 			List<CartDetailEntity> cartDetails = cart.getCartDetails(); 

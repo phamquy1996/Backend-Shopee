@@ -41,7 +41,7 @@ public abstract class ParentEntity {
 	private Date modifiedDate;
 	
 	@Column
-	private Number status;
+	private Integer status;
 
 	public Long getId() {
 		return id;
@@ -83,11 +83,11 @@ public abstract class ParentEntity {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public Number getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Number status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 }

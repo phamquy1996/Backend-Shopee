@@ -21,15 +21,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Product")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ProductEntity extends ParentEntity{
-	@Column(name = "name", nullable = true, unique = true)
+	@Column(name = "name", nullable = true)
 	private String name;
 	
 	@Lob
-	@Column(name  = "description", nullable = true, unique = true)
+	@Column(name  = "description", nullable = true)
 	private String description;
 	
 	@Column(name = "price")
-	private Float price;
+	private int price;
 	
 	@Column(name = "Subclassfly")
 	private String Subclassfly;
@@ -38,7 +38,7 @@ public class ProductEntity extends ParentEntity{
 	private String classfly;
 	
 	@Column(name = "discount")
-	private Float discount;
+	private Integer discount;
 	
 	@Column(name = "gram")
 	private Number gram;
@@ -159,19 +159,19 @@ public class ProductEntity extends ParentEntity{
 		this.description = description;
 	}
 
-	public Float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public Float getDiscount() {
+	public Integer getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(Float discount) {
+	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
 

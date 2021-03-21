@@ -15,7 +15,7 @@ public class ProductDTO {
 	
 	private String description;
 	
-	private Float price;
+	private int price;
 	
 	private String subclassify;
 	
@@ -97,11 +97,11 @@ public class ProductDTO {
 		this.description = description;
 	}
 
-	public Float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

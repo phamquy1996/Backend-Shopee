@@ -1,8 +1,11 @@
 package com.backendshopee.controller;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -53,5 +56,14 @@ public class SocketController {
 		System.out.print(headerAccessor.getSessionAttributes().get("username"));
 		return chatMessage;
 	}
+	
+	
+	@MessageMapping("/chat.private.{username}")
+	public void filterPrivateMessage(@Payload MessageEntity message, @DestinationVariable("username") String username, Principal principal) {
+//		checkProfanityAndSanitize(message);
+//		
+//		message.setUsername(principal.getName());
 
+		simpMessagingTemplate.convertAndSend("/user/" + username + "/exchange/amq.direct/chat.message", message);
+	}
 }

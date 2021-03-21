@@ -10,7 +10,7 @@ public class ChildCategoryDTO{
 	
 	private Long subcategory_id;
 	
-	private Long status;
+	private Integer status;
 	
 	public String getName() {
 		return name;
@@ -36,11 +36,11 @@ public class ChildCategoryDTO{
 		this.category_id = category_id;
 	}
 
-	public Long getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

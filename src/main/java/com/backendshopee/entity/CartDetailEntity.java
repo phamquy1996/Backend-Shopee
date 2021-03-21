@@ -36,7 +36,7 @@ public class CartDetailEntity extends ParentEntity {
 	private Integer subclassify_id;
 	
 	@ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
+    @JoinColumn(name = "cart_id", nullable = true)
 	private CartEntity cart;
 
 	public Number getCheckBuy() {

@@ -1,10 +1,19 @@
 package com.backendshopee.entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "Bill")
 public class BillEntity extends ParentEntity{
@@ -26,11 +35,16 @@ public class BillEntity extends ParentEntity{
 	@Column(name = "sum")
 	private Number sum = 0;
 	
-	@Column(name = "user_id_buyer")
-	private Number user_id_buyer;
+	@OneToOne
+    @JoinColumn(name = "user_id_buyer")
+    private UserEntity user_buyer;
 	
-	@Column(name = "user_id_saler")
-	private Number user_id_saler;
+	@OneToMany(mappedBy = "bill")
+	private List<BillDetailEntiy> billDetails = new ArrayList<>();
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id_saler", nullable = false)
+	private UserEntity user;
 
 	public String getName() {
 		return name;
@@ -79,21 +93,28 @@ public class BillEntity extends ParentEntity{
 	public void setSum(Number sum) {
 		this.sum = sum;
 	}
-
-	public Number getUser_id_buyer() {
-		return user_id_buyer;
+	@JsonIgnore
+	public UserEntity getUser_buyer() {
+		return user_buyer;
+	}
+	@JsonIgnore
+	public void setUser_buyer(UserEntity user_buyer) {
+		this.user_buyer = user_buyer;
 	}
 
-	public void setUser_id_buyer(Number user_id_buyer) {
-		this.user_id_buyer = user_id_buyer;
+	public List<BillDetailEntiy> getBillDetails() {
+		return billDetails;
 	}
 
-	public Number getUser_id_saler() {
-		return user_id_saler;
+	public void setBillDetails(List<BillDetailEntiy> billDetails) {
+		this.billDetails = billDetails;
 	}
-
-	public void setUser_id_saler(Number user_id_saler) {
-		this.user_id_saler = user_id_saler;
+	@JsonIgnore
+	public UserEntity getUser() {
+		return user;
 	}
-	
+	@JsonIgnore
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
 }

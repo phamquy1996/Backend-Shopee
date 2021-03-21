@@ -42,7 +42,7 @@ public class UserController {
 	public UserEntity addUser(@Valid @RequestBody UserEntity model) {
 //		String code = bCryptPasswordEncoder.encode(model.getPassword());
 //		model.setPassword(code);
-//		model.setRoles(iRoleService.findByRole("ADMIN"));
+		model.setRoles(iRoleService.findByRole("ADMIN"));
 		iuserservice.addUser(model);
 		return model;
 	}

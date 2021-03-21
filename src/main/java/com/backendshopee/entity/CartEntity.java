@@ -29,7 +29,7 @@ public class CartEntity extends ParentEntity {
 	private List<CartDetailEntity> cartDetails = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id_saler", nullable = false)
+    @JoinColumn(name = "user_id_saler")
 	private UserEntity user;
 	
 	@Column(name = "price")

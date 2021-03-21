@@ -3,13 +3,11 @@ package com.backendshopee.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -64,6 +62,9 @@ public class UserEntity extends ParentEntity{
 //		productsFavourite.add(product);
 //        product.getProductsFavourite().add(this);
 //    } 
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
+	private List<BillEntity> bills = new ArrayList<>();
 	
 	public String getName() {
 		return name;
@@ -135,6 +136,14 @@ public class UserEntity extends ParentEntity{
 
 	public void setCarts(List<CartEntity> carts) {
 		this.carts = carts;
+	}
+
+	public List<BillEntity> getBills() {
+		return bills;
+	}
+
+	public void setBills(List<BillEntity> bills) {
+		this.bills = bills;
 	}
 
 }

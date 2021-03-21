@@ -42,12 +42,14 @@ public class CartService implements ICartService {
 		
 		List<CartEntity> cartfind = (List<CartEntity>) cartRepository.findByUseridbuyerAndUseridsaler(userSaler, userBuyer);
 		if(cartfind.isEmpty()) {
-			System.out.print("empty");
+			System.out.print("empty" + userBuyer.getId() + "anhquy");
 			CartEntity cart = new CartEntity();
 //			cart.setUser_saler(userSaler);
 			cart.setUser(userBuyer);
 			cart.setUser_buyer(userSaler);
+			cart.setStatus(1);
 			cartRepository.save(cart);
+			System.out.print("LOI O DAY AK");
 			String status = "add";
 			iCartDetailService.addCartDetail(status, cart, product, productDTO);
 		}else {
