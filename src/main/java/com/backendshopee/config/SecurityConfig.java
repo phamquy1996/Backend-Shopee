@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthenticationFilter();
     }
     
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -42,13 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/**")
                 .permitAll()
+                .antMatchers("/api/user/allUser")
+                .permitAll()
                 .antMatchers("/javatechie/**")
+                .permitAll()
+                .antMatchers("/api/user/login")
+                .permitAll()
+                .antMatchers("/upload/static/images/gallery/**")
                 .permitAll()
                 .antMatchers("/api/posts/all")
                 .permitAll()
                 .anyRequest()
-                .authenticated();
-
+                .authenticated()
+                ;
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

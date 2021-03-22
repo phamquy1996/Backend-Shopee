@@ -1,83 +1,66 @@
 package com.backendshopee.security;
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
+import java.security.Principal;
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.backendshopee.exception.SpringBlogException;
-import java.util.Base64;
-import io.jsonwebtoken.Claims;
+import com.backendshopee.entity.UserEntity;
+
+//import com.bezkoder.springjwt.security.services.UserDetailsImpl;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
-@Service
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
+
+@Component
 public class JwtProvider {
-	private KeyStore keyStore;
+	private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @PostConstruct
-    public void init() {
-        try {
-            keyStore = KeyStore.getInstance("JKS");
-            InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
-            keyStore.load(resourceAsStream, "secret".toCharArray());
-        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            throw new SpringBlogException("Exception occured while loading keystore");
-        }
+	@Value("${bezkoder.app.jwtSecret}")
+	private String jwtSecret;
 
-    }
+	@Value("${bezkoder.app.jwtExpirationMs}")
+	private int jwtExpirationMs;
 
-    public String generateToken(Authentication authentication) {
-        User principal = (User) authentication.getPrincipal();
-        System.out.print("name" + principal.getUsername());
-        return Jwts.builder()
-                .setSubject(principal.getUsername())
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS512))
-                .compact();
-    }
-    
+	public String generateJwtToken(Principal principal) {
 
-    private PrivateKey getPrivateKey() {
-        try {
-            return (PrivateKey) keyStore.getKey("backend-shoppe", "secret".toCharArray());
-        } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
-            throw new SpringBlogException("Exception occured while retrieving public key from keystore");
-        }
-    }
+//		UserEntity principal = (UserEntity) authentication.getPrincipal();
+		
+		return Jwts.builder()
+				.setSubject(principal.getName())
+				.setIssuedAt(new Date())
+				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.compact();
+	}
 
-    public boolean validateToken(String jwt) {
-        Jwts.parser().setSigningKey(getPublickey()).parseClaimsJws(jwt);
-        return true;
-    }
+	public String getUserNameFromJwtToken(String token) {
+		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+	}
 
-    private PublicKey getPublickey() {
-        try {
-            return keyStore.getCertificate("backend-shoppe").getPublicKey();
-        } catch (KeyStoreException e) {
-            throw new SpringBlogException("Exception occured while retrieving public key from keystore");
-        }
-    }
+	public boolean validateJwtToken(String authToken) {
+		try {
+			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+			return true;
+		} catch (SignatureException e) {
+			logger.error("Invalid JWT signature: {}", e.getMessage());
+		} catch (MalformedJwtException e) {
+			logger.error("Invalid JWT token: {}", e.getMessage());
+		} catch (ExpiredJwtException e) {
+			logger.error("JWT token is expired: {}", e.getMessage());
+		} catch (UnsupportedJwtException e) {
+			logger.error("JWT token is unsupported: {}", e.getMessage());
+		} catch (IllegalArgumentException e) {
+			logger.error("JWT claims string is empty: {}", e.getMessage());
+		}
 
-    public String getUsernameFromJWT(String token) {
-    	System.out.print(token);
-        Claims claims = Jwts.parser()
-                .setSigningKey(Keys.secretKeyFor(SignatureAlgorithm.HS512))
-                .parseClaimsJws(token)
-                .getBody();
-
-        return claims.getSubject();
-    }
+		return false;
+	}
 }

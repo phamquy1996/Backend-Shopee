@@ -1,5 +1,6 @@
 package com.backendshopee.service.impl;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
 
 	@Autowired
 	private IProductService iProductService;
@@ -61,15 +63,14 @@ public class UserService implements IUserService {
 				.authenticate(new UsernamePasswordAuthenticationToken(userEntity.getName(), userEntity.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authenticate);
 
-		String authenticationToken = jwtProvider.generateToken(authenticate);
+		String authenticationToken = jwtProvider.generateJwtToken(authenticate);
 		System.out.print("token" + authenticationToken);
-		return null;
+		return authenticationToken;
 	}
 
 	public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
 		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
-		System.out.print("6666");
 		return Optional.ofNullable(principal);
 	}
 
@@ -128,6 +129,13 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		UserEntity user = userRepository.findByName(name);
 		return user;
+	}
+
+	@Override
+	public String getUserLogin() {
+		// TODO Auto-generated method stub
+		java.security.Principal principal = null;
+		return principal.getName();
 	}
 
 }

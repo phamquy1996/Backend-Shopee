@@ -1,5 +1,6 @@
 package com.backendshopee.service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,5 @@ public interface IUserService {
 	public UserEntity findByName(String name);
 	public void favoriteProduct(Long id);
 	public Optional<org.springframework.security.core.userdetails.User> getCurrentUser();
+	public String getUserLogin();
 }

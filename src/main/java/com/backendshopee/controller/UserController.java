@@ -2,11 +2,17 @@ package com.backendshopee.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +25,8 @@ import com.backendshopee.repository.UserRepository;
 import com.backendshopee.security.JwtProvider;
 import com.backendshopee.service.IRoleService;
 import com.backendshopee.service.IUserService;
+import com.backendshopee.service.impl.UserAuthService;
+import com.backendshopee.service.impl.UserDetailsI;
 @RestController 
 @RequestMapping("/api/user")
 public class UserController {
@@ -33,15 +41,27 @@ public class UserController {
 	UserRepository userRepository;
 	
 	@Autowired
-    private JwtProvider jwtProvider;
+	UserAuthService userAuthService;
 	
+//	@Autowired
+//    private JwtProvider jwtProvider;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	JwtProvider jwtProvider;
+
 //	@Autowired
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@PostMapping(value = "addUser")
 	public UserEntity addUser(@Valid @RequestBody UserEntity model) {
-//		String code = bCryptPasswordEncoder.encode(model.getPassword());
-//		model.setPassword(code);
+		String code = passwordEncoder.encode(model.getPassword());
+		model.setPassword(code);
 		model.setRoles(iRoleService.findByRole("ADMIN"));
 		iuserservice.addUser(model);
 		return model;
@@ -59,7 +79,17 @@ public class UserController {
 	@PostMapping(value = "/login")
     public String login(@RequestBody UserEntity userEntity) {
 		System.out.print("run");
-        return iuserservice.login(userEntity);
+//		UserDetails userDetails
+//        = userAuthService.loadUserByUsername(userEntity.getName());
+//		String token =
+//                jwtUtility.generateToken(userDetails);
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(userEntity.getName(), userEntity.getPassword()));
+		
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		String jwt = jwtProvider.generateJwtToken(authentication);
+		
+		return jwt;
     }
 	
 	@GetMapping(value = "/allUser")
@@ -111,6 +141,6 @@ public class UserController {
 	@GetMapping(value = "/ak/{id}")
 	public String ak(@PathVariable(value = "id") String id){
 //		iuserservice.deleteUser(id);
-		return jwtProvider.getUsernameFromJWT(id);
+		return null;
 	}
 }
