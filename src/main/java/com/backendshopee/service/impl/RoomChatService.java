@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.backendshopee.entity.CartEntity;
 import com.backendshopee.entity.RoomChatEntity;
 import com.backendshopee.entity.UserEntity;
 import com.backendshopee.repository.RoomChatRepository;
@@ -38,7 +39,7 @@ public class RoomChatService implements IRoomChatService{
 		}else {
 			UserEntity userSaler = iUserService.findById(id);
 			UserEntity userBuyer = iUserService.findByName(username);
-			List<RoomChatEntity> roomChatEntity = roomChatRepository.findByUserName1AndUserName2(userSaler.getName(), userBuyer.getName());
+			List<RoomChatEntity> roomChatEntity =  roomChatRepository.findByUserName1AndUserName2(userSaler.getName(), userBuyer.getName());
 			if(roomChatEntity.isEmpty()) {
 				RoomChatEntity room = new RoomChatEntity();
 				room.setUserName1(userSaler.getName());
@@ -63,6 +64,19 @@ public class RoomChatService implements IRoomChatService{
 		}
 		System.out.println(username);
 		return roomChatRepository.findByUserName1(username);
+	}
+
+	@Override
+	public List<RoomChatEntity> findByUserNam1AndUserName2(String username1, String username2) {
+		// TODO Auto-generated method stub
+		List<RoomChatEntity> listRoom = roomChatRepository.findByUserName1AndUserName2(username1,username2);
+		return listRoom;
+	}
+
+	@Override
+	public RoomChatEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return roomChatRepository.findById(id).get();
 	}
 
 }

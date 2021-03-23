@@ -3,6 +3,8 @@ package com.backendshopee.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.backendshopee.dto.ProductDTO;
@@ -38,8 +40,16 @@ public class CartService implements ICartService {
 	public boolean addToCart(ProductDTO productDTO) {
 		ProductEntity product = iProductService.findById(productDTO.getId());
 		UserEntity userSaler = iUserService.findById(product.getUserSalerid());
-		UserEntity userBuyer = iUserService.findByName("admin");
 		
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+		 username = ((UserDetails)principal).getUsername();
+		} else {
+		 username = principal.toString();
+		}
+		UserEntity userBuyer = iUserService.findByName(username);
 		List<CartEntity> cartfind = (List<CartEntity>) cartRepository.findByUseridbuyerAndUseridsaler(userSaler, userBuyer);
 		if(cartfind.isEmpty()) {
 			System.out.print("empty" + userBuyer.getId() + "anhquy");

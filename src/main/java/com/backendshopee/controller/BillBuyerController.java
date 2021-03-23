@@ -1,5 +1,7 @@
 package com.backendshopee.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,7 @@ public class BillBuyerController {
 	IUserService iUserService;
 	
 	@GetMapping("/allBill")
-	public UserEntity allCart() {
-		return iUserService.findByName("admin");
+	public UserEntity allCart(Principal principal) {
+		return iUserService.findByName(principal.getName());
 	}
 }

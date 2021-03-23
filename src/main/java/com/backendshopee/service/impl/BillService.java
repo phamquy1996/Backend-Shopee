@@ -3,6 +3,8 @@ package com.backendshopee.service.impl;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.backendshopee.entity.BillDetailEntiy;
@@ -31,7 +33,14 @@ public class BillService implements IBillService {
 
 	@Override
 	public void checkout() {
-		UserEntity user = iUserService.findByName("admin");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+		 username = ((UserDetails)principal).getUsername();
+		} else {
+		 username = principal.toString();
+		}
+		UserEntity user = iUserService.findByName(username);
 		Date date = new Date(0);
 		for (CartEntity item : user.getCarts()) {
 			if (!item.getCartDetails().isEmpty()) {

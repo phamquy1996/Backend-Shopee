@@ -14,11 +14,14 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.backendshopee.entity.MessageEntity;
+import com.backendshopee.service.IMessageService;
 
 @Controller
 public class SocketController {
 
 	private static final Logger log = LoggerFactory.getLogger(SocketController.class);
+	@Autowired
+	IMessageService iMessageService;
 	
 	@MessageMapping("/chat.register")
 	@SendTo("/topic/pubic")
@@ -41,9 +44,10 @@ public class SocketController {
 	@MessageMapping("/sendPrivateMessage")
 	//@SendTo("/queue/reply")
 	public void sendPrivateMessage(@Payload MessageEntity chatMessage) {
+
 		simpMessagingTemplate.convertAndSendToUser(
 				chatMessage.getReceiver().trim(), "/reply", chatMessage); 
-		//return chatMessage;
+		iMessageService.addMessage(chatMessage);
 	}
 
 	@MessageMapping("/addPrivateUser")

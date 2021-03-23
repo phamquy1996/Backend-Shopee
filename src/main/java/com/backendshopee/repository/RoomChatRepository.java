@@ -15,6 +15,7 @@ public interface RoomChatRepository extends JpaRepository<RoomChatEntity, Long> 
     List<RoomChatEntity> findByUserName1AndUserName2(@Param("UserName1") String UserName1,
 	                                 @Param("UserName2") String UserName2);
 	
-	@Query("select s from RoomChatEntity s where s.UserName2 = :UserName2")
+	@Query("select s from RoomChatEntity s where s.UserName2 = :UserName2 or s.UserName1 = :UserName2")
     List<RoomChatEntity> findByUserName1(@Param("UserName2") String UserName2);
+	
 }

@@ -2,16 +2,21 @@ package com.backendshopee.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "Message")
 public class MessageEntity extends ParentEntity{
 	private MessageType type;
 	private String sender;
     private String receiver;
-	private LocalDateTime dateTime=LocalDateTime.now();
+    private LocalDateTime dateTime=LocalDateTime.now();
 	
 	@Column(name = "content")
 	private String content;
@@ -22,8 +27,10 @@ public class MessageEntity extends ParentEntity{
 	@Column(name = "image")
 	private String image = " 0";
 	
-	@Column(name = "room_id")
-	private Number room_id;
+	
+	@ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+	private RoomChatEntity roomChat;
 	
 	public String getContent() {
 		return content;
@@ -47,14 +54,6 @@ public class MessageEntity extends ParentEntity{
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public Number getRoom_id() {
-		return room_id;
-	}
-
-	public void setRoom_id(Number room_id) {
-		this.room_id = room_id;
 	}
 	
 	public enum MessageType {
@@ -94,4 +93,22 @@ public class MessageEntity extends ParentEntity{
     public void setType(MessageType type) {
         this.type = type;
     }
+    
+    @JsonIgnore
+	public RoomChatEntity getRoomChat() {
+		return roomChat;
+	}
+    
+    @JsonIgnore
+	public void setRoomChat(RoomChatEntity roomChat) {
+		this.roomChat = roomChat;
+	}
+    
+//    public Long getRoom_id(){
+//        return roomChat.getId();
+//    }
+//    
+//    public void setRoom_id(RoomChatEntity roomChat) {
+//		roomChat.getId();
+//	}
 }

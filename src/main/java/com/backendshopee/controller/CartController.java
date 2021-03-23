@@ -1,5 +1,7 @@
 package com.backendshopee.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +37,8 @@ public class CartController {
 	}
 	
 	@GetMapping("/allCart")
-	public UserEntity allCart() {
-		return iUserService.findByName("admin");
+	public UserEntity allCart(Principal principal) {
+		return iUserService.findByName(principal.getName());
 	}
 	
 	@GetMapping("/allCartDetail")
