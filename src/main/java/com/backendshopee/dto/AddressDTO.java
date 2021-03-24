@@ -1,39 +1,20 @@
-package com.backendshopee.entity;
+package com.backendshopee.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Table(name = "Address")
-public class AddressEntity extends ParentEntity{
-	@Column(name  = "name")
+public class AddressDTO {
 	private String name;
 	
-	@Column(name = "phone")
 	private Integer phone;
 	
-	@Column(name = "village")
 	private String village;
 	
-	@Column(name = "province_id")
 	private Integer province_id;
 	
-	@Column(name = "district_id")
 	private Integer district_id;
 	
-	@Column(name = "ward_id")
 	private Integer ward_id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
-	private UserEntity user;
-	
+	private long user_id;
+
 	public String getName() {
 		return name;
 	}
@@ -81,14 +62,12 @@ public class AddressEntity extends ParentEntity{
 	public void setWard_id(Integer ward_id) {
 		this.ward_id = ward_id;
 	}
-	
-	@JsonIgnore
-	public UserEntity getUser() {
-		return user;
+
+	public long getUser_id() {
+		return user_id;
 	}
-	
-	@JsonIgnore
-	public void setUser(UserEntity user) {
-		this.user = user;
+
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
 	}
 }

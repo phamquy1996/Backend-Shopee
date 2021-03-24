@@ -2,13 +2,6 @@ package com.backendshopee.dto;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.backendshopee.entity.RoomChatEntity;
-import com.backendshopee.entity.MessageEntity.MessageType;
-
 public class MessageDTO {
 	private MessageType type;
 	private String sender;
@@ -18,6 +11,7 @@ public class MessageDTO {
 	private String avatar = " 0";
 	private String image = " 0";
 	private long room_id;
+	private int isRead = 0;
 	public MessageType getType() {
 		return type;
 	}
@@ -72,4 +66,10 @@ public class MessageDTO {
         LEAVE,
         TYPING
     }
+	public int getIsRead() {
+		return isRead;
+	}
+	public void setIsRead(int isRead) {
+		this.isRead = isRead;
+	}
 }

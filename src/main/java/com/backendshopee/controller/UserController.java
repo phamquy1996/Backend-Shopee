@@ -2,12 +2,11 @@ package com.backendshopee.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backendshopee.dto.UserDTO;
 import com.backendshopee.entity.UserEntity;
 import com.backendshopee.repository.UserRepository;
 import com.backendshopee.security.JwtProvider;
 import com.backendshopee.service.IRoleService;
 import com.backendshopee.service.IUserService;
 import com.backendshopee.service.impl.UserAuthService;
-import com.backendshopee.service.impl.UserDetailsI;
 @RestController 
 @RequestMapping("/api/user")
 public class UserController {
@@ -95,6 +94,14 @@ public class UserController {
 	@GetMapping(value = "/allUser")
 	public List<UserEntity> allUser(){
 		return iuserservice.findAll();
+	}
+	
+	@GetMapping(value = "/modelMapper")
+	public UserDTO modelMapper(){
+		ModelMapper modelMapper = new ModelMapper();
+		UserEntity user = iuserservice.findByName("admin");
+		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+		return userDTO;
 	}
 	
 	@GetMapping(value = "/user")

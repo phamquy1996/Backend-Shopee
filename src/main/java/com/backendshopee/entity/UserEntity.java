@@ -55,6 +55,9 @@ public class UserEntity extends ParentEntity{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
 	private List<CartEntity> carts = new ArrayList<>();
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
+	private List<AddressEntity> address = new ArrayList<>();
+	
 //	public void removeClassB(ProductEntity product) {
 //		productsFavourite.remove(product);
 //        product.getProductsFavourite().remove(this);
@@ -65,7 +68,7 @@ public class UserEntity extends ParentEntity{
 //        product.getProductsFavourite().add(this);
 //    } 
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
+	@OneToMany(mappedBy = "user" )
 	private List<BillEntity> bills = new ArrayList<>();
 	
 	public String getName() {
@@ -146,6 +149,14 @@ public class UserEntity extends ParentEntity{
 
 	public void setBills(List<BillEntity> bills) {
 		this.bills = bills;
+	}
+
+	public List<AddressEntity> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<AddressEntity> address) {
+		this.address = address;
 	}
 
 }

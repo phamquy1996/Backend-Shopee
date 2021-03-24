@@ -24,6 +24,9 @@ public class MessageEntity extends ParentEntity{
 	@Column(name = "avatar")
 	private String avatar = " 0";
 	
+	@Column(name = "isRead")
+	private Integer isRead;
+	
 	@Column(name = "image")
 	private String image = " 0";
 	
@@ -102,6 +105,14 @@ public class MessageEntity extends ParentEntity{
     @JsonIgnore
 	public void setRoomChat(RoomChatEntity roomChat) {
 		this.roomChat = roomChat;
+	}
+
+	public Integer getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(Integer isRead) {
+		this.isRead = isRead;
 	}
     
 //    public Long getRoom_id(){

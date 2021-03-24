@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backendshopee.dto.MessageDTO;
 import com.backendshopee.entity.MessageEntity;
 import com.backendshopee.entity.RoomChatEntity;
 import com.backendshopee.repository.MessageRepository;
@@ -21,21 +22,22 @@ public class MessageService implements IMessageService{
 	IRoomChatService iRoomChatService;
 	
 	@Override
-	public boolean addMessage(MessageEntity messageEntity) {
+	public boolean addMessage(MessageDTO messageDTO) {
 		// TODO Auto-generated method stub
-		System.out.print(messageEntity.getSender() + messageEntity.getReceiver());
-		List<RoomChatEntity> rooms = (List<RoomChatEntity>) iRoomChatService.findByUserNam1AndUserName2(messageEntity.getSender(), messageEntity.getReceiver());
+		System.out.print(messageDTO.getSender() + messageDTO.getReceiver());
+		List<RoomChatEntity> rooms = (List<RoomChatEntity>) iRoomChatService.findByUserNam1AndUserName2(messageDTO.getSender(), messageDTO.getReceiver());
 		
 		MessageEntity message = new MessageEntity();
 		if(rooms.isEmpty()) {
-			List<RoomChatEntity> rooms1 = (List<RoomChatEntity>) iRoomChatService.findByUserNam1AndUserName2(messageEntity.getReceiver(),messageEntity.getSender());
+			List<RoomChatEntity> rooms1 = (List<RoomChatEntity>) iRoomChatService.findByUserNam1AndUserName2(messageDTO.getReceiver(),messageDTO.getSender());
 			message.setRoomChat(rooms1.get(0));
 		}else {
 			message.setRoomChat(rooms.get(0));
 		}
-		message.setContent(messageEntity.getContent());
-		message.setSender(messageEntity.getSender());
-		message.setReceiver(messageEntity.getReceiver());
+		message.setContent(messageDTO.getContent());
+		message.setSender(messageDTO.getSender());
+		message.setIsRead(0);
+		message.setReceiver(messageDTO.getReceiver());
 		messageRepository.save(message);
 		return true;
 	}

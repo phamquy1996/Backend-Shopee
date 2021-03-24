@@ -13,7 +13,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
-import com.backendshopee.entity.MessageEntity;
+import com.backendshopee.dto.MessageDTO;
 import com.backendshopee.service.IMessageService;
 
 @Controller
@@ -25,7 +25,7 @@ public class SocketController {
 	
 	@MessageMapping("/chat.register")
 	@SendTo("/topic/pubic")
-	public MessageEntity register(@Payload MessageEntity chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+	public MessageDTO register(@Payload MessageDTO chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		System.out.println("handling send message: ");
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		return chatMessage;
@@ -33,7 +33,7 @@ public class SocketController {
 
 	@MessageMapping("/chat.send")
 	@SendTo("/topic/pubic")
-	public MessageEntity sendMessage(@Payload MessageEntity chatMessage) {
+	public MessageDTO sendMessage(@Payload MessageDTO chatMessage) {
 		System.out.println("handling send message: ");
 		return chatMessage;
 	}
@@ -43,7 +43,7 @@ public class SocketController {
 
 	@MessageMapping("/sendPrivateMessage")
 	//@SendTo("/queue/reply")
-	public void sendPrivateMessage(@Payload MessageEntity chatMessage) {
+	public void sendPrivateMessage(@Payload MessageDTO chatMessage) {
 
 		simpMessagingTemplate.convertAndSendToUser(
 				chatMessage.getReceiver().trim(), "/reply", chatMessage); 
@@ -52,7 +52,7 @@ public class SocketController {
 
 	@MessageMapping("/addPrivateUser")
 	@SendTo("/queue/reply")
-	public MessageEntity addPrivateUser(@Payload MessageEntity chatMessage,
+	public MessageDTO addPrivateUser(@Payload MessageDTO chatMessage,
 			SimpMessageHeaderAccessor headerAccessor) {
 		// Add user in web socket session
 //		System.out.print(headerAccessor.getSessionAttributes());
@@ -63,7 +63,7 @@ public class SocketController {
 	
 	
 	@MessageMapping("/chat.private.{username}")
-	public void filterPrivateMessage(@Payload MessageEntity message, @DestinationVariable("username") String username, Principal principal) {
+	public void filterPrivateMessage(@Payload MessageDTO message, @DestinationVariable("username") String username, Principal principal) {
 //		checkProfanityAndSanitize(message);
 //		
 //		message.setUsername(principal.getName());
