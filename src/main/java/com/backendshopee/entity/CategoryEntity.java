@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "Category")
 public class CategoryEntity extends ParentEntity {
@@ -46,6 +46,7 @@ public class CategoryEntity extends ParentEntity {
 	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL)
 	private List<ChildCategoryEntity> ChildCategories = new ArrayList<>();
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "categoryentity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ProductEntity> Products = new ArrayList<>();
 

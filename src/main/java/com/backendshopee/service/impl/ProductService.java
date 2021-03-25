@@ -58,7 +58,7 @@ public class ProductService implements IProductService{
 		productEntity.setChildCategoryEntity(childCategoryEnyity);
 		productEntity.setSubCategoryEntity(subCategoryEntity);
 		productEntity.setGram(productDTO.getGram());
-//		productEntity.setPrice(productDTO.getPrice());
+		productEntity.setPrice(productDTO.getPrice());
 		productEntity.setQty(productDTO.getQty());
 		productEntity.setPricemax(productDTO.getPricemax());
 		productEntity.setPricemin(productDTO.getPricemin());

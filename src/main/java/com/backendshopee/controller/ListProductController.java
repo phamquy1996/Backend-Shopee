@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backendshopee.api.client.output.CategoryAndListProductOutput;
 import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.service.ICategoryService;
 import com.backendshopee.service.ISubCategoryService;
@@ -21,8 +23,13 @@ public class ListProductController {
 	ISubCategoryService iSubCategoryService;
 	
 	@GetMapping("/listProductCate/{id}")
-	public CategoryEntity listProductCate(@PathVariable(value = "id") Long id){
-		return iCategoryService.findById(id);
+	public CategoryAndListProductOutput listProductCate(@RequestParam(value = "page", required=false) Integer page, @PathVariable(value = "id") Long id){
+		if(page == null) {
+			return iCategoryService.findByCategory(id, 0);
+		}else {
+			return iCategoryService.findByCategory(id, page);
+		}
+		
 	}
 	
 	@GetMapping("/listProductSubcate/{id}")

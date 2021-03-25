@@ -3,22 +3,25 @@ package com.backendshopee.api.home.output;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backendshopee.entity.CategoryEntity;
-import com.backendshopee.entity.ProductEntity;
+import com.backendshopee.dto.CategoryDTO;
+import com.backendshopee.dto.Products;
 
 public class HomeOutput {
-	List<ProductEntity> products = new ArrayList<>();
-	List<CategoryEntity> categories = new ArrayList<>();
-	public List<ProductEntity> getProducts() {
+	List<Products> products = new ArrayList<>();
+	List<CategoryDTO> categories = new ArrayList<>();
+	
+	public List<Products> getProducts() {
 		return products;
 	}
-	public void setProducts(List<ProductEntity> products) {
+	public void setProducts(List<Products> products) {
 		this.products = products;
 	}
-	public List<CategoryEntity> getCategories() {
+	public List<CategoryDTO> getCategories() {
 		return categories;
 	}
-	public void setCategories(List<CategoryEntity> categories) {
+	public void setCategories(List<CategoryDTO> categories) {
 		this.categories = categories;
 	}
+	
+
 }
