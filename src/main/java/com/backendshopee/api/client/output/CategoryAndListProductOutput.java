@@ -3,8 +3,8 @@ package com.backendshopee.api.client.output;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backendshopee.dto.AddressDTO;
 import com.backendshopee.dto.Products;
+import com.backendshopee.dto.ProvinceDTO;
 import com.backendshopee.dto.SubcategoryDTO;
 
 public class CategoryAndListProductOutput {
@@ -41,7 +41,7 @@ public class CategoryAndListProductOutput {
 	
 	List<Products> products = new ArrayList<>();
 	List<SubcategoryDTO> subCategories = new ArrayList<>();
-	List<AddressDTO> addresss = new ArrayList<>();
+	List<ProvinceDTO> provinces = new ArrayList<>();
 
 	public List<Products> getProducts() {
 		return products;
@@ -67,11 +67,12 @@ public class CategoryAndListProductOutput {
 		this.totalPage = totalPage;
 	}
 
-	public List<AddressDTO> getAddresss() {
-		return addresss;
+	public List<ProvinceDTO> getProvinces() {
+		return provinces;
 	}
 
-	public void setAddresss(List<AddressDTO> addresss) {
-		this.addresss = addresss;
+	public void setProvinces(List<ProvinceDTO> provinces) {
+		this.provinces = provinces;
 	}
+
 }

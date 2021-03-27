@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backendshopee.api.client.output.CategoryAndListProductOutput;
+import com.backendshopee.dto.SearchProductDTO;
 import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.service.ICategoryService;
 import com.backendshopee.service.ISubCategoryService;
@@ -23,11 +24,17 @@ public class ListProductController {
 	ISubCategoryService iSubCategoryService;
 	
 	@GetMapping("/listProductCate/{id}")
-	public CategoryAndListProductOutput listProductCate(@RequestParam(value = "page", required=false) Integer page, @PathVariable(value = "id") Long id){
+	public CategoryAndListProductOutput listProductCate(@RequestParam(value = "page", defaultValue = "0",required=false) Integer page, 
+			@RequestParam(value = "minPrice", defaultValue = "0", required = false) Integer minPrice,
+			@PathVariable(value = "id") Long id){
+		SearchProductDTO search = new SearchProductDTO();
+		System.out.print("ppppppppppppppppppppppp+ " + minPrice);
+		search.setPage(page);
+//		search.setMinPrice(minPrice);
 		if(page == null) {
-			return iCategoryService.findByCategory(id, 0);
+			return iCategoryService.findByCategory(id, 0, search);
 		}else {
-			return iCategoryService.findByCategory(id, page);
+			return iCategoryService.findByCategory(id, page, search);
 		}
 		
 	}

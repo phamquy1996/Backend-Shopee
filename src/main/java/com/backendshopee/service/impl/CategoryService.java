@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 
 import com.backendshopee.api.client.output.CategoryAndListProductOutput;
 import com.backendshopee.dto.Products;
+import com.backendshopee.dto.ProvinceDTO;
+import com.backendshopee.dto.SearchProductDTO;
 import com.backendshopee.dto.SubcategoryDTO;
 import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.entity.ProductEntity;
+import com.backendshopee.entity.ProvinceEntity;
 import com.backendshopee.entity.SubCategoryEntity;
 import com.backendshopee.repository.CategoryRepository;
 import com.backendshopee.repository.ProductRepository;
+import com.backendshopee.repository.ProvinceRepository;
 import com.backendshopee.repository.SubCategoryRepository;
 import com.backendshopee.service.ICategoryService;
 
@@ -27,6 +31,9 @@ public class CategoryService implements ICategoryService{
 	
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	ProvinceRepository provinceRepository;
 	
 	@Autowired
 	SubCategoryRepository subCategoryRepository;
@@ -54,29 +61,38 @@ public class CategoryService implements ICategoryService{
 	}
 
 	@Override
-	public CategoryAndListProductOutput findByCategory(Long id, int page) {
+	public CategoryAndListProductOutput findByCategory(Long id, int page, SearchProductDTO searchProductDTO) {
 		// TODO Auto-generated method stub
-		System.out.print("chau vao day");
+//		Sort sort = Sort.by(
+//			    Sort.Order.desc("pricemax"),
+//			    Sort.Order.desc("price"));
+		
+		Sort sort = Sort.by("pricemax").descending()
+				  .and(Sort.by("price").descending());
 		int limit = 15;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by("id").descending());
+		Pageable pageable = PageRequest.of(searchProductDTO.getPage(), limit, sort);
 		CategoryEntity categoryEntity = categoryrepository.findById(id).get();
 		ModelMapper modelMapper = new ModelMapper();
 		CategoryAndListProductOutput categoryAndListProductOutput = new CategoryAndListProductOutput();
 		categoryAndListProductOutput.setImage(categoryEntity.getImage());
 		categoryAndListProductOutput.setName(categoryEntity.getName());
 		categoryAndListProductOutput.setId(categoryEntity.getId());
-		categoryAndListProductOutput.setTotalPage((long) Math.ceil((double) (productRepository.totalProductByCategory(categoryEntity)) / limit));
-		List<ProductEntity> productsEntity = productRepository.findByCategory(categoryEntity, pageable);
+		categoryAndListProductOutput.setTotalPage((long) Math.ceil((double) (productRepository.totalProductByCategory(categoryEntity, searchProductDTO)) / limit));
+		List<ProductEntity> productsEntity = productRepository.findByCategory(categoryEntity, searchProductDTO, pageable);
 		List<SubCategoryEntity> subcategories = subCategoryRepository.findBySubcategoryByCategory(categoryEntity);
 		for(ProductEntity item:productsEntity) {
 			Products products = modelMapper.map(item, Products.class);
 			products.setImage(item.getImage());
 			categoryAndListProductOutput.getProducts().add(products);
 		}
-		System.out.print("---------------------");
 		for(SubCategoryEntity item:subcategories) {
 			SubcategoryDTO subcategoryDTO = modelMapper.map(item, SubcategoryDTO.class);
 			categoryAndListProductOutput.getSubCategories().add(subcategoryDTO); 
+		}
+		List<ProvinceEntity> provinceEntity = provinceRepository.findAll();
+		for(ProvinceEntity item:provinceEntity) {
+			ProvinceDTO provinceDTO = modelMapper.map(item, ProvinceDTO.class);
+			categoryAndListProductOutput.getProvinces().add(provinceDTO); 
 		}
 		return categoryAndListProductOutput;
 	}

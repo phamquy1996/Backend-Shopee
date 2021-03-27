@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backendshopee.api.client.output.CategoryAndListProductOutput;
 import com.backendshopee.dto.ProductDTO;
+import com.backendshopee.dto.SearchProductDTO;
 import com.backendshopee.entity.CategoryEntity;
 import com.backendshopee.repository.CategoryRepository;
 import com.backendshopee.service.ICategoryService;
@@ -56,8 +57,9 @@ public class CateController {
 		int limit = 2;
 		int page = 1;
 		long ida = 1;
+		SearchProductDTO search = new SearchProductDTO();
 		CategoryEntity category = iCategoryService.findById(ida);
 		Pageable pageable = PageRequest.of(page, limit);
-		return iCategoryService.findByCategory(id,page);
+		return iCategoryService.findByCategory(id, page, search);
 	}
 }
